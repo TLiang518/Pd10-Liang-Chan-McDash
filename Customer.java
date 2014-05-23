@@ -1,7 +1,7 @@
 public class Customer{
 
     private int points;
-    private int numPeople;
+    private int numPeople;//maybe we should just keep it simple and make it a set # of peeps
     private int happiness; //correlates with time
   
 
@@ -17,6 +17,7 @@ public class Customer{
     public void consume(int order){
     	if (happiness != 10){
     		happiness ++;
+    	
     	}
     }
 
