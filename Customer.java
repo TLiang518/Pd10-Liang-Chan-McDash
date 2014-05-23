@@ -2,13 +2,16 @@ public class Customer{
 
     private int points;
     private int numPeople;
-    private int happiness;
+    private int happiness; //correlates with time
+  
 
+    
     public Customer(){
 	happiness = 10;
 	//max = 10, decrease when they get impatient
 	//TIME
 	numPeople = (int)(Math.random()*4);
+
     }
     
     public void consume(int order){
@@ -21,11 +24,14 @@ public class Customer{
     public void exit(){
     	points = happiness * happiness;
     	//remove customer
-    }
+    }	
     
-    
+    public void angry(){
+    	if(happiness < 4){
+    	   exit();
     	}
-    	}
+    	
     }
-
 }
+
+ 
