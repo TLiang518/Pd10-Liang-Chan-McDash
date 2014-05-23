@@ -4,6 +4,7 @@ public class Player{
     private int level;
     private int experience;
     private int holdOrder;
+    //speed?
     
     public Player(){
 	points = 0;
@@ -15,5 +16,12 @@ public class Player{
     public void getFood(int order){
 	holdOrder = order;
     }
-
+    
+    public void move(){
+    }
+    
+    public void serveFood(){
+    //match order number with customer order number
+    }
 }
+
