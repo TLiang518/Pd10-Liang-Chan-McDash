@@ -20,3 +20,7 @@ void intro(){
     image(bg,0,0);
      
 }
+
+//I have diner2.jpg file, I just didn't upload yet!!
+//but this runs yay!!!
+//I guess we'll be using processing for everything, not emacs!!?!??
