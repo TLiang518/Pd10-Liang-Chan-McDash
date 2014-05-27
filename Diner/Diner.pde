@@ -18,7 +18,7 @@ void draw(){
 void intro(){
     bg = loadImage(images[index]);
     image(bg,0,0);
-    textFont("Georgia", 32);
+    textFont("Allegro", 32);
     text("McDash",10,30);
      
 }
