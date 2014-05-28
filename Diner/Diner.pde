@@ -6,6 +6,7 @@ int index=0;
 void setup(){
     size(1200,650);
     myFont = createFont("Georgia",20,true);
+    //textFont(font);
     bg = loadImage(images[index]);
 }
 
@@ -17,9 +18,12 @@ void draw(){
 
 void intro(){
     bg = loadImage(images[index]);
-    image(bg,0,0);
-    textFont("Allegro", 32);
-    text("McDash",10,30);
+    image(bg,0,0);   
+    textAlign(CENTER,CENTER);
+    text("McDash",width/2,height/2);
+    fill(120); //we will fix this color later
+    //font
+    textSize(100);
+    //press any key to start game
      
 }
-
