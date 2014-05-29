@@ -26,10 +26,14 @@ void intro(){
     image(bg,0,0);   
     textAlign(CENTER,CENTER);
     text("McDash",width/2,height/2);
-    fill(207,218,65); //we will fix this color later
+    fill(207,218,65);
     //font
     textSize(200);
-    //press any key to start game
+   /* textAlign(CENTER, BOTTOM);
+    text("Press ANY key to START!!!",width/10,height/10);
+    fill(100,100,20);
+    textSize(50);
+    */
     
 }
 
