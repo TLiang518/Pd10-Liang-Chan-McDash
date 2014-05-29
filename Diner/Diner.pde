@@ -38,7 +38,7 @@ void intro(){
 }
 
 void keyPressed(){
-    if (screen == 0){
+    if (key == ENTER){
         screen = 1;
     }
 }
