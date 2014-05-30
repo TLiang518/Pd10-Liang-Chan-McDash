@@ -1,10 +1,7 @@
 PFont myFont;
 PImage bg, img;
-<<<<<<< HEAD
 String[] images = {"diner2.jpg","testpic.jpg","girl.jpg"};
-=======
 String[] images = {"diner2.jpg","testpic.jpg","girl.png"};
->>>>>>> 93917873c926bfece6eb02d63c98a7497167c540
 int index=0;
 int screen = 0;
 int coorX = 100;
@@ -63,12 +60,9 @@ void keyPressed(){
     else if(keyCode == RIGHT){ 
       a = a + 5;
     }
-<<<<<<< HEAD
     
-=======
   }
     //doesn't work need to fix!!!
->>>>>>> 93917873c926bfece6eb02d63c98a7497167c540
 }
 
 void gameSetup(){
