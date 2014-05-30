@@ -1,10 +1,6 @@
 PFont myFont;
 PImage bg, img;
-<<<<<<< HEAD
-String[] images = {"diner2.jpg","testpic.jpg","girl.jpg"};
-=======
 String[] images = {"diner2.jpg","testpic.jpg","girl.png"};
->>>>>>> 93917873c926bfece6eb02d63c98a7497167c540
 int index=0;
 int screen = 0;
 int coorX = 100;
@@ -28,16 +24,16 @@ void draw(){
     if (screen==1){
       gameSetup();
 
-    }  
+    }
 }
 
 void intro(){
     bg = loadImage(images[index]);
-    image(bg,0,0);   
+    image(bg,0,0);
     textAlign(CENTER,CENTER);
     text("McDash",width/2,height/2);
     fill(207,218,65);
-    textSize(200);    
+    textSize(200);
     startScreen();
     
     
@@ -54,32 +50,29 @@ void keyPressed(){
     if(keyCode == UP){
      b = b - 5;
     }
-    else if(keyCode == DOWN){       
-      b = b + 5;     
+    else if(keyCode == DOWN){
+      b = b + 5;
     }
-    else if(keyCode == LEFT){   
+    else if(keyCode == LEFT){
       a = a - 5;
     }
-    else if(keyCode == RIGHT){ 
+    else if(keyCode == RIGHT){
       a = a + 5;
     }
-<<<<<<< HEAD
     
-=======
   }
-    //doesn't work need to fix!!!
->>>>>>> 93917873c926bfece6eb02d63c98a7497167c540
+   
 }
 
 void gameSetup(){
-     bg = loadImage(images[1]);  
-     img = loadImage(images[2]);  
+     bg = loadImage(images[1]);
+     img = loadImage(images[2]);
+     img.resize(67,96);
     image(bg,CENTER,CENTER);
     image(img,coorX+a,coorY+b);
-    fill(207,218,65); 
+    fill(207,218,65);
     textSize(100);
    
 }
 
 
-  
