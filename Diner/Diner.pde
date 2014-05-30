@@ -1,13 +1,14 @@
 PFont myFont;
 PImage bg, img;
-String[] images = {"diner2.jpg","testpic.jpg","girl.png"};
+String[] images = {"diner2.jpg","testpic.jpg","girl.png",
+"peter.png","stewie.png","meg.png","chris.png","lois.png"};
 int index=0;
 int screen = 0;
 int coorX = 100;
 int coorY = 100;
 int a = 0;
 int b = 0;
-//coordinates of diner girl
+
 
 void setup(){
     size(1200,650);
@@ -35,7 +36,7 @@ void intro(){
     fill(207,218,65);
     textSize(200);
     startScreen();
-    
+
     
 }
 
@@ -65,9 +66,9 @@ void keyPressed(){
 }
 
 void gameSetup(){
-     bg = loadImage(images[1]);
-     img = loadImage(images[2]);
-     img.resize(67,96);
+    bg = loadImage(images[1]);
+    img = loadImage(images[2]);
+    img.resize(67,96);
     image(bg,CENTER,CENTER);
     image(img,coorX+a,coorY+b);
     fill(207,218,65);
