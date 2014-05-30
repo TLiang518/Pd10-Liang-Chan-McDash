@@ -1,6 +1,6 @@
 PFont myFont;
 PImage bg, img;
-String[] images = {"diner2.jpg","testpic.jpg","girl.JPG"};
+String[] images = {"diner2.jpg","testpic.jpg","girl.jpg"};
 int index=0;
 int screen = 0;
 int coorX = 100;
@@ -62,7 +62,7 @@ void keyPressed(){
       img.resize(55,110);   
       a = a + 10;
     }
-    //doesn't work need to fix!!!
+    
 }
 
 void gameSetup(){
