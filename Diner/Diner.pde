@@ -1,6 +1,6 @@
 PFont myFont;
-PImage bg;
-String[] images = {"diner2.jpg","testpic.jpg"};
+PImage bg, img;
+String[] images = {"diner2.jpg","testpic.jpg","girl.jpg"};
 int index=0;
 int screen = 0;
 
@@ -17,7 +17,8 @@ void draw(){
       intro();
     }
     if (screen==1){
-      game();
+      gameSetup();
+
     }  
 }
 
@@ -27,13 +28,9 @@ void intro(){
     textAlign(CENTER,CENTER);
     text("McDash",width/2,height/2);
     fill(207,218,65);
-    //font
-    textSize(200);
-   /* textAlign(CENTER, BOTTOM);
-    text("Press ANY key to START!!!",width/10,height/10);
-    fill(100,100,20);
-    textSize(50);
-    */
+    textSize(200);    
+    
+    
     
 }
 
@@ -43,11 +40,19 @@ void keyPressed(){
     }
 }
 
-void game(){
-     bg = loadImage(images[1]);
-    image(bg,CENTER,CENTER);   
+void gameSetup(){
+     bg = loadImage(images[1]);  
+     img = loadImage(images[2]);  
+    image(bg,CENTER,CENTER);
+    img.resize(55,110);   
+    image(img,100,100);
+    
     textAlign(CENTER,CENTER);
     text("Game Screen",width/2,height/2);
-    fill(207,218,65); //we will fix this color later
+    fill(207,218,65); 
     textSize(100);
+   
 }
+
+
+  
