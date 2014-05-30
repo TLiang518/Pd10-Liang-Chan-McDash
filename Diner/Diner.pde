@@ -1,6 +1,5 @@
 PFont myFont;
 PImage bg, img;
-String[] images = {"diner2.jpg","testpic.jpg","girl.jpg"};
 String[] images = {"diner2.jpg","testpic.jpg","girl.png"};
 int index=0;
 int screen = 0;
@@ -68,6 +67,7 @@ void keyPressed(){
 void gameSetup(){
      bg = loadImage(images[1]);  
      img = loadImage(images[2]);  
+     img.resize(67,96);
     image(bg,CENTER,CENTER);
     image(img,coorX+a,coorY+b);
     fill(207,218,65); 
