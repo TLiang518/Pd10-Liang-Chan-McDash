@@ -1,10 +1,12 @@
 PFont myFont;
 PImage bg, img;
-String[] images = {"diner2.jpg","testpic.jpg","girl.jpg"};
+String[] images = {"diner2.jpg","testpic.jpg","girl.JPG"};
 int index=0;
 int screen = 0;
 int coorX = 100;
 int coorY = 100;
+int a = 0;
+int b = 0;
 //coordinates of diner girl
 
 void setup(){
@@ -46,19 +48,19 @@ void startScreen(){
 void keyPressed(){
     if(keyCode == UP){
      img.resize(55,110);   
-     image(img,coorX,coorY+10);
+     b = b - 10;
     }
     else if(keyCode == DOWN){
       img.resize(55,110);   
-      image(img,coorX,coorY-10);      
+      b = b + 10;     
     }
     else if(keyCode == LEFT){
       img.resize(55,110);   
-      image(img,coorX-10,coorY);
+      a = a - 10;
     }
     else if(keyCode == RIGHT){
       img.resize(55,110);   
-      image(img,coorX+10,coorY);
+      a = a + 10;
     }
     //doesn't work need to fix!!!
 }
@@ -68,10 +70,7 @@ void gameSetup(){
      img = loadImage(images[2]);  
     image(bg,CENTER,CENTER);
     img.resize(55,110);   
-    image(img,coorX,coorY);
-    
-    textAlign(CENTER,CENTER);
-    text("Game Screen",width/2,height/2);
+    image(img,coorX+a,coorY+b);
     fill(207,218,65); 
     textSize(100);
    
