@@ -1,6 +1,6 @@
 PFont myFont;
 PImage bg, img;
-String[] images = {"diner2.jpg","testpic.jpg","girl.JPG"};
+String[] images = {"diner2.jpg","testpic.jpg","girl.png"};
 int index=0;
 int screen = 0;
 int coorX = 100;
@@ -46,22 +46,20 @@ void startScreen(){
 }
 
 void keyPressed(){
+  if (screen == 1){
     if(keyCode == UP){
-     img.resize(55,110);   
-     b = b - 10;
+     b = b - 5;
     }
-    else if(keyCode == DOWN){
-      img.resize(55,110);   
-      b = b + 10;     
+    else if(keyCode == DOWN){       
+      b = b + 5;     
     }
-    else if(keyCode == LEFT){
-      img.resize(55,110);   
-      a = a - 10;
+    else if(keyCode == LEFT){   
+      a = a - 5;
     }
-    else if(keyCode == RIGHT){
-      img.resize(55,110);   
-      a = a + 10;
+    else if(keyCode == RIGHT){ 
+      a = a + 5;
     }
+  }
     //doesn't work need to fix!!!
 }
 
@@ -69,7 +67,6 @@ void gameSetup(){
      bg = loadImage(images[1]);  
      img = loadImage(images[2]);  
     image(bg,CENTER,CENTER);
-    img.resize(55,110);   
     image(img,coorX+a,coorY+b);
     fill(207,218,65); 
     textSize(100);
