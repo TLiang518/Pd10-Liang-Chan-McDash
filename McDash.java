@@ -7,7 +7,7 @@ public class McDash{
     //setup: four tables, all with four seats
     
     public void setup(){
-	String n = "" //some method of finding name of player (scanner?)
+	String n = ""; //some method of finding name of player (scanner?)
 	Player p = new Player(n);
 	
     }
@@ -15,9 +15,9 @@ public class McDash{
     public void game(Player p){
 	//game revolves around player, maybe we can save players too 
 	Customer[] newC = new Customer[4]; 
-	int newCusts = (int) Math.Random()*4;
+	int newCusts = (int)(Math.random()*4);
 	for (int i = 0; i < newCusts ; i ++){
-	    newC[i] = new Customer();
+	    newC[i] = new Customer(p);
 	}
 	//creates up to 4 random customers at a time
 	

@@ -7,11 +7,13 @@ public class Player{
     private int numOrders;
     private Customer[] customers;
     private int[] orders;
+    private String name;
     //speed?
     
-    public Player(){
-	customers = new int[20];
-	order = new int[20];
+    public Player(String n){
+	name = n;
+	customers = new Customer[20];
+	orders = new int[20];
 	points = 0;
 	level = 1;
 	experience = 10;
@@ -27,7 +29,7 @@ public class Player{
 	    holdOrder = -1;
 	    int index;
 	    for (index = 0; index <numOrders; index++){
-		if (customers[i]==c){
+		if (customers[index]==c){
 		    break;
 		}
 	    }

@@ -25,12 +25,10 @@ public class Customer{
 		return -1;
 	    }
 	}
-	else{
-	    (if happiness > 0){
-		happiness --;
-		return order;
-	    }
+	if (happiness > 0){
+	    happiness --;
 	}
+	return order;
     }
 
     public void exit(){
