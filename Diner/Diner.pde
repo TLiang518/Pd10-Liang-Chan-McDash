@@ -1,8 +1,8 @@
 PFont myFont;
-PImage bg, img;
+PImage bg, img, img2;
 
-String[] images = {"diner2.jpg","testpic.jpg","girl.png",
-"peter.png","stewie.png","meg.png","chris.png","lois.png"};
+String[] images = {"diner2.jpg","testpic.jpg","girl.png", "coorfind.png",
+"peter.png","stewie.png","chris.png","lois.png"};
 
 int index=0;
 int screen = 0;
@@ -10,7 +10,7 @@ int coorX = 100;
 int coorY = 100;
 int a = 0;
 int b = 0; 
-//Customer[] customers = new Customer[20];
+Customer[] customers = new Customer[20];
 
 void setup(){
     size(1200,650);
@@ -67,13 +67,15 @@ void keyPressed(){
 
 void gameSetup(){
     bg = loadImage(images[1]);
-    img = loadImage(images[2]);
+    img = loadImage(images[2]); 
     img.resize(67,96);
     image(bg,CENTER,CENTER);
     image(img,coorX+a,coorY+b);
     fill(207,218,65);
     textSize(100); 
-  
+    img2 = loadImage(images[3]);
+    img2.resize(10,10);
+    image(img2,50+a,50+b);
 }
 
 
