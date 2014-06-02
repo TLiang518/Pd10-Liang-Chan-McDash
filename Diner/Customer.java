@@ -5,6 +5,7 @@ public class Customer{
     private int numPeople;//maybe we should just keep it simple and make it a set # of peeps
     private int happiness; //correlates with time
     private int order;
+    private int image;
   
 
     
@@ -13,11 +14,15 @@ public class Customer{
 	happiness = 10;
 	//max = 10, decrease when they get impatient
 	//TIME
+	image = (int)(Math.random()*5)
 	order = (int)(Math.random()*5);
 	numPeople = (int)(Math.random()*4);
-
     }
     
+    public int getImage(){
+	return image;
+    }
+
     public int consume(int gOrder){
 	if (gOrder == order){
 	    if (happiness != 10){

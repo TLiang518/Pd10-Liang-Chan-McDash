@@ -9,7 +9,8 @@ int screen = 0;
 int coorX = 100;
 int coorY = 100;
 int a = 0;
-int b = 0;
+int b = 0; 
+Customer[] customers = new Customer[20];
 
 void setup(){
     size(1200,650);
