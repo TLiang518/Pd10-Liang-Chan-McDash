@@ -4,15 +4,12 @@ PImage bg, img;
 String[] images = {"diner2.jpg","testpic.jpg","girl.png",
 "peter.png","stewie.png","meg.png","chris.png","lois.png"};
 
-
-
 int index=0;
 int screen = 0;
 int coorX = 100;
 int coorY = 100;
 int a = 0;
 int b = 0;
-
 
 void setup(){
     size(1200,650);
@@ -28,7 +25,6 @@ void draw(){
     }
     if (screen==1){
       gameSetup();
-
     }
 }
 
@@ -64,24 +60,7 @@ void keyPressed(){
     else if(keyCode == RIGHT){
       a = a + 5;
     }
-    
   }
-
-   
-}
-
-void gameSetup(){
-    bg = loadImage(images[1]);
-    img = loadImage(images[2]);
-    img.resize(67,96);
-
-}
-
-void gameSetup(){
-     bg = loadImage(images[1]);  
-     img = loadImage(images[2]);  
-     img.resize(67,96);
-
 }
 
 void gameSetup(){
@@ -91,7 +70,6 @@ void gameSetup(){
     image(bg,CENTER,CENTER);
     image(img,coorX+a,coorY+b);
     fill(207,218,65);
-    textSize(100);
-   
+    textSize(100); 
 }
 
