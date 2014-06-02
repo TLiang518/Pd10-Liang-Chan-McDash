@@ -25,6 +25,7 @@ void draw(){
     }
     if (screen==1){
       gameSetup();
+   
     }
 }
 
@@ -71,5 +72,7 @@ void gameSetup(){
     image(img,coorX+a,coorY+b);
     fill(207,218,65);
     textSize(100); 
+  
 }
+
 
