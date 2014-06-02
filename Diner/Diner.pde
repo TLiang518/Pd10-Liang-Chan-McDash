@@ -1,11 +1,16 @@
 PFont myFont;
 PImage bg, img;
 <<<<<<< HEAD
+<<<<<<< HEAD
 String[] images = {"diner2.jpg","testpic.jpg","girl.png",
 "peter.png","stewie.png","meg.png","chris.png","lois.png"};
 =======
 String[] images = {"diner2.jpg","testpic.jpg","girl.png"};
 >>>>>>> f3f3dd83047c1a3efb6ec5a0ffb7e8f303dee43a
+=======
+String[] images = {"diner2.jpg","testpic.jpg","girl.png",
+"peter.png","stewie.png","meg.png","chris.png","lois.png"};
+>>>>>>> 6cb724596630dc927c99f9f38b72340a488cfbf3
 int index=0;
 int screen = 0;
 int coorX = 100;
@@ -67,6 +72,7 @@ void keyPressed(){
     
   }
 <<<<<<< HEAD
+<<<<<<< HEAD
    
 }
 
@@ -83,6 +89,15 @@ void gameSetup(){
      img = loadImage(images[2]);  
      img.resize(67,96);
 >>>>>>> f3f3dd83047c1a3efb6ec5a0ffb7e8f303dee43a
+=======
+   
+}
+
+void gameSetup(){
+    bg = loadImage(images[1]);
+    img = loadImage(images[2]);
+    img.resize(67,96);
+>>>>>>> 6cb724596630dc927c99f9f38b72340a488cfbf3
     image(bg,CENTER,CENTER);
     image(img,coorX+a,coorY+b);
     fill(207,218,65);
@@ -90,4 +105,7 @@ void gameSetup(){
    
 }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 6cb724596630dc927c99f9f38b72340a488cfbf3
