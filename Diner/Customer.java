@@ -14,7 +14,7 @@ public class Customer{
 	happiness = 10;
 	//max = 10, decrease when they get impatient
 	//TIME
-	image = (int)(Math.random()*5)
+	image = (int)(Math.random()*5);
 	order = (int)(Math.random()*5);
 	numPeople = (int)(Math.random()*4);
     }
