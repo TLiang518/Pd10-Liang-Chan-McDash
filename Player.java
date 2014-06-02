@@ -4,9 +4,14 @@ public class Player{
     private int level;
     private int experience;
     private int holdOrder;
+    private int numOrders;
+    private Customer[] customers;
+    private int[] orders;
     //speed?
     
     public Player(){
+	customers = new int[20];
+	order = new int[20];
 	points = 0;
 	level = 1;
 	experience = 10;
@@ -17,11 +22,32 @@ public class Player{
 	holdOrder = order;
     }
     
-    public void move(){
+    public void serveFood(Customer c){
+	if (c.consume(holdOrder)==-1){
+	    holdOrder = -1;
+	    int index;
+	    for (index = 0; index <numOrders; index++){
+		if (customers[i]==c){
+		    break;
+		}
+	    }
+	    customers[index]=null;
+	    for (int i = index; i < numOrders - 1; i ++){
+		customers[i]=customers[i+1];
+	    }
+	    numOrders = numOrders -1;
+	}
     }
-    
-    public void serveFood(){
-    //match order number with customer order number
+
+    public void getPoints(int n){
+	points = points + n;
     }
+
+    public void getOrder(Customer c){
+	customers[numOrders] = c;
+	orders[numOrders]= c.giveOrder();
+	numOrders++;
+    }
+
 }
 
