@@ -1,10 +1,10 @@
 PFont myFont;
 PImage bg, img;
 String[] images ={"testpic.jpg","coorfind.png"};
-int a = 0;
-int b = 0;
 int index = 0;
-int screen = 0;
+int screen = 1;
+int xcor = 50;
+int ycor = 50;
 void setup(){
     size(1200,650);
     myFont = createFont("Georgia",20,true);
@@ -31,22 +31,27 @@ void startScreen(){
 void keyPressed(){
   if (screen == 1){
     if(keyCode == UP){
-     b = b - 5;
+      ycor = ycor - 5;
     }
     else if(keyCode == DOWN){
-      b = b + 5;
+      ycor = ycor + 5;
     }
     else if(keyCode == LEFT){
-      a = a - 5;
+      xcor = xcor - 5;
     }
     else if(keyCode == RIGHT){
-      a = a + 5;
+      xcor = xcor + 5;
+    }
+    else if(keyCode == ENTER){
+       println("(" + xcor + "," + ycor + ")");
     }
   }
 }
 void gameSetup(){
     bg = loadImage(images[0]);
+    image(bg,CENTER,CENTER);
+    
     img = loadImage(images[1]);
     img.resize(10,10);
-    image(img,50+a,50+b);
+    image(img,xcor,ycor);
 }
