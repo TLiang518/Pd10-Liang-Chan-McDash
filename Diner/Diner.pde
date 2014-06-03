@@ -79,9 +79,7 @@ void gameSetup(){
     image(img,coorX+a,coorY+b);
     fill(207,218,65);
     textSize(100); 
-    //img2 = loadImage(images[3]);
-    //img2.resize(10,10);
-    //image(img2,50+a,50+b);
+    
     for (int i = 0; i < numCust; i ++){
       if (Math.random()*100 > 90){
         custCoordX[i]=custCoordX[i]+(int)(Math.random()*11) - 5;
