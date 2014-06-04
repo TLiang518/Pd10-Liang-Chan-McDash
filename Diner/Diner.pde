@@ -56,17 +56,26 @@ void startScreen(){
 
 void keyPressed(){
   if (screen == 1){
-    if(keyCode == UP){
-     b = b - 5;
-    }
-    else if(keyCode == DOWN){
-      b = b + 5;
-    }
-    else if(keyCode == LEFT){
-      a = a - 5;
-    }
-    else if(keyCode == RIGHT){
-      a = a + 5;
+    if ((keyCode==UP)||(keyCode==DOWN)||(keyCode==LEFT)||(keyCode==RIGHT)){
+      int tempA = a;
+      int tempB = b;
+      if(keyCode == UP){
+       b = b - 5;
+      }
+      else if(keyCode == DOWN){
+        b = b + 5;
+      }
+      else if(keyCode == LEFT){
+        a = a - 5;
+      }
+      else if(keyCode == RIGHT){
+        a = a + 5;
+      }
+      if (outOfBounds(coorX+a,coorY+b)){
+        println("("+(coorX+a)+","+(coorY+b)+")");
+        a = tempA;
+        b = tempB;
+      }
     }
   }
 }
@@ -82,10 +91,16 @@ void gameSetup(){
     
     for (int i = 0; i < numCust; i ++){
       if (Math.random()*100 > 90){
-        custCoordX[i]=custCoordX[i]+(int)(Math.random()*11) - 5;
+        int newCoor = custCoordX[i]+(int)(Math.random()*11) - 5;
+        if (!outOfBounds(newCoor,custCoordY[i])){
+          custCoordX[i]=newCoor;
+        }  
       }
       if (Math.random()*100 > 90){
-        custCoordY[i]=custCoordX[i]+(int)(Math.random()*11) - 5;
+        int newCoor = custCoordX[i]+(int)(Math.random()*11) - 5;
+        if (!outOfBounds(custCoordX[i],newCoor)){
+          custCoordY[i]=newCoor;
+        }
       }
       image(custim[i], custCoordX[i], custCoordY[i]);  
     }
@@ -106,13 +121,18 @@ void gameSetup(){
     }
 }
 
-/*setting bounds
-
-  if(coorX <= 5 || coorX >= 1185){
-    coorX = coorX - 5;
-}  
-  if(coorY <= 5 || coorY >= 635){
-    coorY = coorY -5;
-    
-    */
-
+boolean outOfBounds(int x,int y){
+  //Walls
+  if ((x<0)||(x>1195)||(y<0)||(y>645)){
+    return true;
+  }
+  //Kitchen
+  if (x>450 && x<1095 && y<155){
+    return true;
+  }
+  //tables
+  if (((y>230 && y<335)||(y>385 && y<490))&&((x>450 && x<515)||(x>600 && x<605)||(x>745 && x<810)||(x>895 && x<960)||(x>1040 && x<1105))){
+    return true;
+  } 
+  return false;
+}
