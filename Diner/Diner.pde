@@ -102,7 +102,17 @@ void gameSetup(){
           numCust ++;
         }
         savedTime=millis();
+       
     }
 }
 
+/*setting bounds
+
+  if(coorX <= 5 || coorX >= 1185){
+    coorX = coorX - 5;
+}  
+  if(coorY <= 5 || coorY >= 635){
+    coorY = coorY -5;
+    
+    */
 
