@@ -1,7 +1,6 @@
 PFont myFont, myFont2;
 PImage bg, img, img2;
 PImage[] custim = new PImage[20];
-
 String[] images = {"diner2.jpg","testpic.jpg","girl.png", "coorfind.png","peter.png","stewie.png","chris.png","lois.png"};
 
 int index=0;
@@ -32,7 +31,7 @@ void draw(){
     }
     if (screen==1){
       gameSetup();   
-      makeText();
+   
     }
 }
 
@@ -111,7 +110,19 @@ void gameSetup(){
           int temp = (int)(Math.random()*4);
           customers[numCust]=new Customer(p);
           custim[numCust]=loadImage(images[4+temp]);
-          custim[numCust].resize(67,96);
+          if(4+temp == 4){
+            custim[numCust].resize(60,120);
+          }
+          if(4+temp == 5){
+            custim[numCust].resize(35,40);
+          }
+          if(4+temp == 6){
+            custim[numCust].resize(83,100);
+          }
+          if(4+temp == 7){
+            custim[numCust].resize(68,128);
+          }
+          
           //int tempCoord = (int)(Math.random()*500);
           custCoordX[numCust]=165;
           custCoordY[numCust]=35;
