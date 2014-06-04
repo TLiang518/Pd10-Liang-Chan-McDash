@@ -125,7 +125,7 @@ boolean outOfBounds(int x,int y){
     return true;
   }
   //Kitchen
-  if (x>450 && x<1095 && y<155){
+  if (x>410 && x<1095 && y<155){
     return true;
   }
   //tables
