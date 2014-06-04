@@ -1,4 +1,4 @@
-PFont myFont;
+PFont myFont, myFont2;
 PImage bg, img, img2;
 PImage[] custim = new PImage[20];
 
@@ -20,7 +20,7 @@ Customer[] customers = new Customer[20];
 void setup(){
     size(1200,650);
     myFont = createFont("Georgia",20,true);
-    //textFont(font);
+    myFont2 = createFont("Times New Roman",5,true);
     bg = loadImage(images[index]);
     savedTime=millis();
 }
@@ -32,6 +32,7 @@ void draw(){
     }
     if (screen==1){
       gameSetup();   
+      makeText();
     }
 }
 
@@ -41,7 +42,8 @@ void intro(){
     image(bg,0,0);
     textAlign(CENTER,CENTER);
     text("McDash",width/2,height/2);
-    fill(207,218,65);
+    textFont(myFont);
+    fill(0);
     textSize(200);
     startScreen();
     
@@ -134,3 +136,14 @@ boolean outOfBounds(int x,int y){
   } 
   return false;
 }
+
+/*void makeText(){
+   textAlign(400,1000);
+   if(coorX == 100 && coorY == 100){
+     text("Use ARROW KEYS to move!",400,1000);
+     textFont(myFont2);
+     fill(0);
+     textSize(50);
+   }
+}
+*/
