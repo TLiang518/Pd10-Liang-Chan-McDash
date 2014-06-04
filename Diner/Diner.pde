@@ -80,6 +80,13 @@ void keyPressed(){
   }
 }
 
+void mouseDragged(){
+}
+
+//for dragging customers to tables?
+//or should they plop onto random tables themselves?
+
+
 void gameSetup(){
     bg = loadImage(images[1]);
     img = loadImage(images[2]); 
