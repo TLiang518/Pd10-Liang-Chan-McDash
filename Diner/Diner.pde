@@ -2,8 +2,7 @@ PFont myFont;
 PImage bg, img, img2;
 PImage[] custim = new PImage[20];
 
-String[] images = {"diner2.jpg","testpic.jpg","girl.png", "coorfind.png",
-"peter.png","stewie.png","chris.png","lois.png"};
+String[] images = {"diner2.jpg","testpic.jpg","girl.png", "coorfind.png","peter.png","stewie.png","chris.png","lois.png"};
 
 int index=0;
 int screen = 0;
@@ -91,13 +90,13 @@ void gameSetup(){
     
     for (int i = 0; i < numCust; i ++){
       if (Math.random()*100 > 90){
-        int newCoor = custCoordX[i]+(int)(Math.random()*11) - 5;
+        int newCoor = custCoordX[i]+(((int)(Math.random()*3)-1)*5);
         if (!outOfBounds(newCoor,custCoordY[i])){
           custCoordX[i]=newCoor;
         }  
       }
       if (Math.random()*100 > 90){
-        int newCoor = custCoordX[i]+(int)(Math.random()*11) - 5;
+        int newCoor = custCoordX[i]+(((int)(Math.random()*3)-1)*5);
         if (!outOfBounds(custCoordX[i],newCoor)){
           custCoordY[i]=newCoor;
         }
@@ -111,13 +110,12 @@ void gameSetup(){
           customers[numCust]=new Customer(p);
           custim[numCust]=loadImage(images[4+temp]);
           custim[numCust].resize(67,96);
-          int tempCoord = (int)(Math.random()*500);
-          custCoordX[numCust]=tempCoord;
-          custCoordY[numCust]=tempCoord;
+          //int tempCoord = (int)(Math.random()*500);
+          custCoordX[numCust]=165;
+          custCoordY[numCust]=35;
           numCust ++;
         }
         savedTime=millis();
-       
     }
 }
 
