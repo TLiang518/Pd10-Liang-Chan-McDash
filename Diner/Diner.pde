@@ -65,24 +65,24 @@ void startScreen(){
 void keyPressed(){
   if (screen == 1){
     if ((keyCode==UP)||(keyCode==DOWN)||(keyCode==LEFT)||(keyCode==RIGHT)){
-      int tempA = a;
-      int tempB = b;
+      int tempX = coorX;
+      int tempY = coorY;
       if(keyCode == UP){
-       b = b - 5;
+        coorY=coorY-5;
       }
       else if(keyCode == DOWN){
-        b = b + 5;
+        coorY=coorY+5;
       }
       else if(keyCode == LEFT){
-        a = a - 5;
+        coorX = coorX - 5;
       }
       else if(keyCode == RIGHT){
-        a = a + 5;
+        coorX = coorX + 5;
       }
-      if (outOfBounds(coorX+a,coorY+b)){
+      if (outOfBounds(coorX,coorY)){
         //println("("+(coorX+a)+","+(coorY+b)+")");
-        a = tempA;
-        b = tempB;
+        coorX = tempX;
+        coorY = tempY;
       }
     }
     if (keyCode==ENTER){
@@ -91,10 +91,22 @@ void keyPressed(){
   }
 }
 
-void mouseDragged(){
-  
+void mousePressed(){
+  if (screen==1){
+     if (coorX < ((mouseX/5)*5)){
+       coorX = coorX + 5;
+     }
+     if (coorX > ((mouseX/5)*5)){
+       coorX = coorX - 5;
+     }
+     if (coorY < ((mouseY/5)*5)){
+       coorY = coorY + 5;
+     }
+     if (coorY > ((mouseY/5)*5)){
+       coorY = coorY - 5;
+     }
+  }
 }
-
 
 
 void gameSetup(){
@@ -102,7 +114,7 @@ void gameSetup(){
     img = loadImage(images[2]); 
     img.resize(67,96);
     image(bg,CENTER,CENTER);
-    image(img,coorX+a,coorY+b);
+    image(img,coorX,coorY);
     fill(207,218,65);
     textSize(100); 
     
@@ -114,7 +126,8 @@ void gameSetup(){
  text(cmin+ ":" + csec, 1100,50);
  
   
-    for (int i = 0; i < numCust; i ++){
+   for (int i = 0; i < numCust; i ++){
+      /*
       if (Math.random()*100 > 90){
         int newCoor = custCoordX[i]+(((int)(Math.random()*3)-1)*5);
         if (!outOfBounds(newCoor,custCoordY[i])){
@@ -127,8 +140,10 @@ void gameSetup(){
           custCoordY[i]=newCoor;
         }
       }
+      */
       image(custim[i], custCoordX[i], custCoordY[i]);  
     }
+    
     int passedTime=millis()-savedTime;
     if (passedTime > 10000){
         if (numCust < 5){  
@@ -149,8 +164,8 @@ void gameSetup(){
           }
           
           //int tempCoord = (int)(Math.random()*500);
-          custCoordX[numCust]=165;
-          custCoordY[numCust]=35;
+           custCoordX[numCust]=165*temp;
+          custCoordY[numCust]=35*temp;
           numCust ++;
         }
         savedTime=millis();
@@ -174,21 +189,25 @@ boolean outOfBounds(int x,int y){
   return false;
 }
 
-void moveToward(int c, int x, int y){
-  while (custCoordX[c]!=x){
-    if (custCoordX[c] < x){
-      custCoordX[c] = custCoordX[c]+5;
+
+void moveToward(int x, int y){
+  println("("+x+","+y+")");
+  while (coorX!=x){
+    a = 0;
+    if (coorX < x){
+      coorX = coorX+5;
     }
     else {
-      custCoordX[c]= custCoordX[c]-5;
+      coorX = coorX-5;
     }
   }
-  while (custCoordY[c]!=y){
-    if (custCoordY[c] < y){
-      custCoordY[c] = custCoordY[c]+5;
+  while (coorY!=y){
+    b = 0;
+    if (coorY < y){
+      coorY = coorY+5;
     }
     else {
-      custCoordY[c]= custCoordY[c]-5;
+      coorY = coorY-5;
     }
   }
 }
