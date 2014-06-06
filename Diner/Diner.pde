@@ -10,6 +10,11 @@ int a = 0;
 int b = 0; 
 int savedTime;
 int numCust = 0;
+int c;
+int cmin;
+int csec;
+int cmil;
+int climit = 10;
 int[] custCoordX = new int[20];
 int[] custCoordY = new int[20];
 Customer[] custLine1 = new Customer[5];
@@ -20,7 +25,7 @@ Customer[] customers = new Customer[20];
 void setup(){
     size(1200,650);
     myFont = createFont("Georgia",20,true);
-    myFont2 = createFont("Verdana",20,true);
+    myFont2 = createFont("Verdana",5,true);
     bg = loadImage(images[index]);
     savedTime=millis();
 
@@ -87,10 +92,9 @@ void keyPressed(){
 }
 
 void mouseDragged(){
+  
 }
 
-//for dragging customers to tables?
-//or should they plop onto random tables themselves?
 
 
 void gameSetup(){
@@ -102,7 +106,14 @@ void gameSetup(){
     fill(207,218,65);
     textSize(100); 
     
-    
+    //countdown timer
+    c = climit*60*1000 - millis();
+      cmin = (c/(60*1000));
+  csec = (c/(100)); 
+  textSize(50);
+ text(cmin+ ":" + csec, 1100,50);
+ 
+  
     for (int i = 0; i < numCust; i ++){
       if (Math.random()*100 > 90){
         int newCoor = custCoordX[i]+(((int)(Math.random()*3)-1)*5);
@@ -145,6 +156,7 @@ void gameSetup(){
         savedTime=millis();
     }
 }
+
 
 boolean outOfBounds(int x,int y){
   //Walls
