@@ -2,7 +2,6 @@ PFont myFont, myFont2;
 PImage bg, img, img2;
 PImage[] custim = new PImage[20];
 String[] images = {"diner2.jpg","testpic.jpg","girl.png", "coorfind.png","peter.png","stewie.png","chris.png","lois.png"};
-
 int index=0;
 int screen = 0;
 int coorX = 100;
@@ -72,10 +71,13 @@ void keyPressed(){
         a = a + 5;
       }
       if (outOfBounds(coorX+a,coorY+b)){
-        println("("+(coorX+a)+","+(coorY+b)+")");
+        //println("("+(coorX+a)+","+(coorY+b)+")");
         a = tempA;
         b = tempB;
       }
+    }
+    if (keyCode==ENTER){
+       println("("+(coorX+a)+","+(coorY+b)+")");
     }
   }
 }
@@ -141,15 +143,15 @@ void gameSetup(){
 
 boolean outOfBounds(int x,int y){
   //Walls
-  if ((x<0)||(x>1195)||(y<0)||(y>645)){
+  if ((x<20)||(x>1175)||(y<20)||(y>625)){
     return true;
   }
   //Kitchen
-  if (x>410 && x<1095 && y<155){
+  if (x>430 && x<1075 && y<135){
     return true;
   }
   //tables
-  if (((y>230 && y<335)||(y>385 && y<490))&&((x>450 && x<515)||(x>600 && x<605)||(x>745 && x<810)||(x>895 && x<960)||(x>1040 && x<1105))){
+  if (((y>190 && y<335)||(y>385 && y<510))&&((x>430 && x<535)||(x>600 && x<605)||(x>745 && x<810)||(x>895 && x<960)||(x>1040 && x<1105))){
     return true;
   } 
   return false;
