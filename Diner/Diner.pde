@@ -12,6 +12,8 @@ int savedTime;
 int numCust = 0;
 int[] custCoordX = new int[20];
 int[] custCoordY = new int[20];
+Customer[] custLine1 = new Customer[5];
+Customer[] custLine2 = new Customer[5];
 Player p;
 Customer[] customers = new Customer[20];
 
@@ -155,6 +157,32 @@ boolean outOfBounds(int x,int y){
     return true;
   } 
   return false;
+}
+
+void moveToward(int c, int x, int y){
+  while (custCoordX[c]!=x){
+    if (custCoordX[c] < x){
+      custCoordX[c] = custCoordX[c]+5;
+    }
+    else {
+      custCoordX[c]= custCoordX[c]-5;
+    }
+  }
+  while (custCoordY[c]!=y){
+    if (custCoordY[c] < y){
+      custCoordY[c] = custCoordY[c]+5;
+    }
+    else {
+      custCoordY[c]= custCoordY[c]-5;
+    }
+  }
+}
+
+void goOnLine(Customer c){
+  //if no room in line 1 or 2, customer leaves, lose points
+  //if lines are uneven, place customer in the line with less people, else in line 1
+  //image moves TOWARD correct coordinate. 
+  //refresh line, people move down
 }
 
 /*void makeText(){
