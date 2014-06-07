@@ -99,8 +99,8 @@ void mousePressed(){
   if (screen==1){
      int tempX = goalX;
      int tempY = goalY;
-     goalX = mouseX;
-     goalY = mouseY;
+     goalX = (mouseX/5)*5;
+     goalY = (mouseY/5)*5;
      if (outOfBounds(goalX,goalY)){
         //println("("+(coorX+a)+","+(coorY+b)+")");
         goalX = tempX;
