@@ -1,0 +1,14 @@
+Java-Processing Interactions:
+-Customer-Sit on click
+-Customer-Order
+-Customer-Consume
+-Customer-Exit
+-Player-getFood
+-Player-giveFood
+-Player-clearTable(?)
+
+
+Processing Stuff:
+-Display Score
+-Customers line up
+-Customers exit
