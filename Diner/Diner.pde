@@ -1,5 +1,5 @@
 PFont myFont, myFont2;
-PImage bg, img, img2;
+PImage bg, img, img2, img3;
 PImage[] custim = new PImage[20];
 String[] images = {"diner2.jpg","testpic.jpg","girl.png", "coorfind.png","peter.png","stewie.png","chris.png","lois.png", "icecream.png"};
 int index=0;
@@ -15,6 +15,7 @@ int cmin;
 int csec;
 int cmil;
 int climit = 10;
+int foodOrder = 0;
 int goalX = 0;
 int goalY = 0;
 int[] custCoordX = new int[20];
@@ -39,7 +40,8 @@ void draw(){
       intro();
     }
     if (screen==1){
-      gameSetup();   
+      gameSetup(); 
+   
    
     }
 }
@@ -107,7 +109,6 @@ void mousePressed(){
   }
 }
 
-
 void gameSetup(){
     bg = loadImage(images[1]);
     img = loadImage(images[2]); 
@@ -119,11 +120,13 @@ void gameSetup(){
     
     //countdown timer
     c = climit*60*1000 - millis();
-      cmin = (c/(60*1000));
-  csec = (c/(100)); 
-  textSize(50);
- text(cmin+ ":" + csec, 1100,50);
- 
+    cmin = (c/(60*1000));
+    csec = (c/(100)); 
+    //cmil = (c/(60*100));
+    textSize(50);
+    text(cmin+ ":" + csec, 1100,50);
+    
+   foodAppear();//testing
   
    for (int i = 0; i < numCust; i ++){
       /*
@@ -192,9 +195,17 @@ void gameSetup(){
         }
         savedTime=millis();
     }
+  
 }
 
 
+void foodAppear(){
+  img3 = loadImage(images[8]);
+ 
+  img3.resize(45,57);
+ image(img3, 480,100);
+ }
+  
 boolean outOfBounds(int x,int y){
   //Walls
   if ((x<-10)||(x>1165)||(y<-10)||(y>580)){
@@ -251,4 +262,3 @@ void goOnLine(Customer c){
    }
 }
 */
-
