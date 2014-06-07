@@ -145,29 +145,9 @@ void gameSetup(){
       */
       image(custim[i], custCoordX[i], custCoordY[i]);  
     }
-    
-    if (goalX!=0){
-        if (coorX < goalX){
-          coorX = coorX + 5;
-        }
-        else if (coorX > goalX){
-          coorX = coorX - 5;
-        }
-        else{
-          goalX = 0;
-        }
-    }
-    if (goalY!=0){
-        if (coorY < goalY){
-          coorY = coorY + 5;
-        }
-        else if (coorY > goalY){
-          coorY = coorY - 5;
-        }
-        else{
-          goalY = 0;
-        }
-    }
+    int tempX = coorX;
+    int tempY = coorY;
+    moveToward();
     
     int passedTime=millis()-savedTime;
     if (passedTime > 10000){
@@ -230,26 +210,40 @@ boolean outOfBounds(int x,int y){
 }
 
 
-void moveToward(int x, int y){
-  println("("+x+","+y+")");
-  while (coorX!=x){
-    a = 0;
-    if (coorX < x){
-      coorX = coorX+5;
+void moveToward(){
+    if (goalX!=0){
+      int tempX = coorX;
+        if (coorX < goalX){
+          coorX = coorX + 5;
+        }
+        else if (coorX > goalX){
+         coorX = coorX - 5;
+      }
+       else{
+         goalX = 0;
+       }
+       if (outOfBounds(coorX,coorY)){
+         coorX= tempX;
+         moveTowardY();
+       }
     }
-    else {
-      coorX = coorX-5;
+    else{
+      moveTowardY();
     }
-  }
-  while (coorY!=y){
-    b = 0;
-    if (coorY < y){
-      coorY = coorY+5;
+}
+
+void moveTowardY(){
+    if (goalY!=0){
+        if (coorY < goalY){
+          coorY = coorY + 5;
+        }
+        else if (coorY > goalY){
+          coorY = coorY - 5;
+        }
+        else{
+          goalY = 0;
+        }
     }
-    else {
-      coorY = coorY-5;
-    }
-  }
 }
 
 void goOnLine(Customer c){
