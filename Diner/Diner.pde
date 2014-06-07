@@ -15,6 +15,8 @@ int cmin;
 int csec;
 int cmil;
 int climit = 10;
+int goalX = 0;
+int goalY = 0;
 int[] custCoordX = new int[20];
 int[] custCoordY = new int[20];
 Customer[] custLine1 = new Customer[5];
@@ -93,24 +95,14 @@ void keyPressed(){
 
 void mousePressed(){
   if (screen==1){
-     int tempX = coorX;
-     int tempY = coorY;
-     if (coorX < ((mouseX/5)*5)){
-       coorX = coorX + 5;
-     }
-     if (coorX > ((mouseX/5)*5)){
-       coorX = coorX - 5;
-     }
-     if (coorY < ((mouseY/5)*5)){
-       coorY = coorY + 5;
-     }
-     if (coorY > ((mouseY/5)*5)){
-       coorY = coorY - 5;
-     }
-     if (outOfBounds(coorX,coorY)){
+     int tempX = goalX;
+     int tempY = goalY;
+     goalX = mouseX;
+     goalY = mouseY;
+     if (outOfBounds(goalX,goalY)){
         //println("("+(coorX+a)+","+(coorY+b)+")");
-        coorX = tempX;
-        coorY = tempY;
+        goalX = tempX;
+        goalY = tempY;
       }
   }
 }
@@ -149,6 +141,29 @@ void gameSetup(){
       }
       */
       image(custim[i], custCoordX[i], custCoordY[i]);  
+    }
+    
+    if (goalX!=0){
+        if (coorX < goalX){
+          coorX = coorX + 5;
+        }
+        else if (coorX > goalX){
+          coorX = coorX - 5;
+        }
+        else{
+          goalX = 0;
+        }
+    }
+    if (goalY!=0){
+        if (coorY < goalY){
+          coorY = coorY + 5;
+        }
+        else if (coorY > goalY){
+          coorY = coorY - 5;
+        }
+        else{
+          goalY = 0;
+        }
     }
     
     int passedTime=millis()-savedTime;
