@@ -99,8 +99,8 @@ void mousePressed(){
   if (screen==1){
      int tempX = goalX;
      int tempY = goalY;
-     goalX = mouseX;
-     goalY = mouseY;
+     goalX = (mouseX/5)*5;
+     goalY = (mouseY/5)*5;
      if (outOfBounds(goalX,goalY)){
         //println("("+(coorX+a)+","+(coorY+b)+")");
         goalX = tempX;
@@ -200,12 +200,15 @@ void gameSetup(){
 
 
 void foodAppear(){
-  img3 = loadImage(images[8]);
- 
-  img3.resize(45,57);
- image(img3, 480,100);
- }
-  
+  int passedTime = millis() -savedTime;    
+   //if(Customer.giveOrder() == 1){
+     if(passedTime > 500){
+     img3 = loadImage(images[8]); 
+     img3.resize(45,57);
+     image(img3, 480,100);
+     }
+   }
+   
 boolean outOfBounds(int x,int y){
   //Walls
   if ((x<-10)||(x>1165)||(y<-10)||(y>580)){
