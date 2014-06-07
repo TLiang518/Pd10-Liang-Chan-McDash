@@ -49,9 +49,11 @@ public class Customer{
     	
     }
 
-    public int giveOrder(){
-	return order;
+       public static int giveOrder(){
+     //  int order = (int)(Math.random()*5);
+       return 1;
     }
+}
 
     
 }
