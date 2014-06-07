@@ -93,6 +93,8 @@ void keyPressed(){
 
 void mousePressed(){
   if (screen==1){
+     int tempX = coorX;
+     int tempY = coorY;
      if (coorX < ((mouseX/5)*5)){
        coorX = coorX + 5;
      }
@@ -105,6 +107,11 @@ void mousePressed(){
      if (coorY > ((mouseY/5)*5)){
        coorY = coorY - 5;
      }
+     if (outOfBounds(coorX,coorY)){
+        //println("("+(coorX+a)+","+(coorY+b)+")");
+        coorX = tempX;
+        coorY = tempY;
+      }
   }
 }
 
