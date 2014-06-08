@@ -10,10 +10,7 @@ int a = 0;
 int b = 0; 
 int savedTime;
 int numCust = 0;
-int c;
-int cmin;
-int csec;
-int cmil;
+int c, cmin, csec, cmil;
 int climit = 10;
 int foodOrder = 0;
 int goalX = 0;
@@ -31,7 +28,6 @@ void setup(){
     myFont2 = createFont("Verdana",5,true);
     bg = loadImage(images[index]);
     savedTime=millis();
-
 }
 
 void draw(){
@@ -41,12 +37,8 @@ void draw(){
     }
     if (screen==1){
       gameSetup(); 
-   
-   
     }
 }
-
-
 
 void intro(){
     bg = loadImage(images[index]);
@@ -57,7 +49,6 @@ void intro(){
     fill(0);
     textSize(200);
     startScreen();
-    
 }
 
 void startScreen(){
@@ -125,28 +116,13 @@ void gameSetup(){
     //cmil = (c/(60*100));
     textSize(50);
     text(cmin+ ":" + csec, 1100,50);
-    
+
    foodAppear();//testing
   
    for (int i = 0; i < numCust; i ++){
-      /*
-      if (Math.random()*100 > 90){
-        int newCoor = custCoordX[i]+(((int)(Math.random()*3)-1)*5);
-        if (!outOfBounds(newCoor,custCoordY[i])){
-          custCoordX[i]=newCoor;
-        }  
-      }
-      if (Math.random()*100 > 90){
-        int newCoor = custCoordX[i]+(((int)(Math.random()*3)-1)*5);
-        if (!outOfBounds(custCoordX[i],newCoor)){
-          custCoordY[i]=newCoor;
-        }
-      }
-      */
       image(custim[i], custCoordX[i], custCoordY[i]);  
     }
-    int tempX = coorX;
-    int tempY = coorY;
+
     moveToward();
     
     int passedTime=millis()-savedTime;
@@ -167,7 +143,6 @@ void gameSetup(){
           if(4+temp == 7){
             custim[numCust].resize(68,128);
           }
-          
           //int tempCoord = (int)(Math.random()*500);
            custCoordX[numCust]=165*temp;
           custCoordY[numCust]=35*temp;
@@ -175,9 +150,7 @@ void gameSetup(){
         }
         savedTime=millis();
     }
-  
 }
-
 
 void foodAppear(){
   int passedTime = millis() -savedTime;    
@@ -208,7 +181,6 @@ boolean outOfBounds(int x,int y){
   } 
   return false;
 }
-
 
 void moveToward(){
     if (goalX!=0){
