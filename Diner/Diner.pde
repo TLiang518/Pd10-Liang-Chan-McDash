@@ -17,8 +17,8 @@ int goalX = 0;
 int goalY = 0;
 int[] custCoordX = new int[20];
 int[] custCoordY = new int[20];
-Customer[] custLine1 = new Customer[5];
-Customer[] custLine2 = new Customer[5];
+ArrayList<Integer> custLine1 = new ArrayList<Integer>();
+ArrayList<Integer> custLine2 = new ArrayList<Integer>();
 Player p;
 Customer[] customers = new Customer[20];
 
@@ -130,6 +130,14 @@ void gameSetup(){
         if (numCust < 5){  
           int temp = (int)(Math.random()*4);
           customers[numCust]=new Customer(p);
+          boolean line1 = true;
+          if (custLine2.size()<custLine1.size()){
+            custLine2.add(numCust);
+            line1 = false;
+          }
+          else{
+            custLine1.add(numCust);
+          }
           custim[numCust]=loadImage(images[4+temp]);
           if(4+temp == 4){
             custim[numCust].resize(60,120);
@@ -144,8 +152,14 @@ void gameSetup(){
             custim[numCust].resize(68,128);
           }
           //int tempCoord = (int)(Math.random()*500);
-           custCoordX[numCust]=165*temp;
-          custCoordY[numCust]=35*temp;
+          if (line1){
+            custCoordX[numCust]=95;
+            custCoordY[numCust]=445-105*(custLine1.indexOf(numCust));
+          }
+          else{
+            custCoordX[numCust]=180;
+            custCoordY[numCust]=445-105*(custLine2.indexOf(numCust));
+          }
           numCust ++;
         }
         savedTime=millis();
