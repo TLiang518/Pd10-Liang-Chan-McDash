@@ -148,30 +148,32 @@ void gameSetup(){
    displayFood();
     
    for (int i = 0; i < numCust; i ++){
-      image(custim[i], custCoordX[i], custCoordY[i]);          
-      if (custPlace[i]==1){
-        moveToward(i,95,445-105*(custLine1.indexOf(i)));
-      }
-      else if (custPlace[i]==2){
-        moveToward(i,180,445-105*(custLine2.indexOf(i)));
-      }
-      else if (custPlace[i]>=3 && custPlace[i]<=7){
-        moveToward(i, 455 + 155*(custPlace[i]-3), 165);
-      }
-      else if (custPlace[i]==0){
-        if (custCoordX[i]==140 && custCoordY[i]==10){
-          custCoordX[i]=0;
-          custCoordY[i]=0;
-          custim[i]=null;
-          customers[i]=null;
-          numCust--;
+      if (customer[i]!=null){
+        image(custim[i], custCoordX[i], custCoordY[i]);          
+        if (custPlace[i]==1){
+          moveToward(i,95,445-105*(custLine1.indexOf(i)));
+        }
+        else if (custPlace[i]==2){
+          moveToward(i,180,445-105*(custLine2.indexOf(i)));
+        }
+        else if (custPlace[i]>=3 && custPlace[i]<=7){
+          moveToward(i, 455 + 155*(custPlace[i]-3), 165);
+        }
+        else if (custPlace[i]==0){
+          if (custCoordX[i]==140 && custCoordY[i]==10){
+            custCoordX[i]=0;
+            custCoordY[i]=0;
+            custim[i]=null;
+            customers[i]=null;
+            numCust--;
+          }
+          else {
+            moveToward(i,140,10);
+          }
         }
         else {
-          moveToward(i,140,10);
+          moveToward(i, 455 + 155*(custPlace[i]-8), 325);
         }
-      }
-      else {
-        moveToward(i, 455 + 155*(custPlace[i]-8), 325);
       }
     }
 
