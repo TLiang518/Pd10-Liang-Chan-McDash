@@ -17,6 +17,7 @@ int goalX = 0;
 int goalY = 0;
 int[] custCoordX = new int[20];
 int[] custCoordY = new int[20];
+int[] custPlace = new int[20];
 ArrayList<Integer> custLine1 = new ArrayList<Integer>();
 ArrayList<Integer> custLine2 = new ArrayList<Integer>();
 Player p;
@@ -120,23 +121,29 @@ void gameSetup(){
    foodAppear();//testing
   
    for (int i = 0; i < numCust; i ++){
-      image(custim[i], custCoordX[i], custCoordY[i]);  
+      image(custim[i], custCoordX[i], custCoordY[i]);          
+      if (custPlace[i]==1){
+        moveToward(i,95,445-105*(custLine1.indexOf(i)));
+      }
+      else if (custPlace[i]==2){
+        moveToward(i,180,445-105*(custLine2.indexOf(i)));
+      }  
     }
 
     moveToward();
     
     int passedTime=millis()-savedTime;
     if (passedTime > 10000){
-        if (numCust < 5){  
+        if (numCust < 10){  
           int temp = (int)(Math.random()*4);
           customers[numCust]=new Customer(p);
-          boolean line1 = true;
           if (custLine2.size()<custLine1.size()){
             custLine2.add(numCust);
-            line1 = false;
+            custPlace[numCust]=2;
           }
           else{
             custLine1.add(numCust);
+            custPlace[numCust]=1;
           }
           custim[numCust]=loadImage(images[4+temp]);
           if(4+temp == 4){
@@ -152,19 +159,14 @@ void gameSetup(){
             custim[numCust].resize(68,128);
           }
           //int tempCoord = (int)(Math.random()*500);
-          if (line1){
-            custCoordX[numCust]=95;
-            custCoordY[numCust]=445-105*(custLine1.indexOf(numCust));
-          }
-          else{
-            custCoordX[numCust]=180;
-            custCoordY[numCust]=445-105*(custLine2.indexOf(numCust));
-          }
+          custCoordX[numCust]=140;
+          custCoordY[numCust]=10;
           numCust ++;
         }
         savedTime=millis();
     }
 }
+
 
 void foodAppear(){
   int passedTime = millis() -savedTime;    
@@ -232,13 +234,35 @@ void moveTowardY(){
     }
 }
 
-void goOnLine(Customer c){
-  //if no room in line 1 or 2, customer leaves, lose points
-  //if lines are uneven, place customer in the line with less people, else in line 1
-  //image moves TOWARD correct coordinate. 
-  //refresh line, people move down
+void moveToward(int c, int x, int y){
+   if (custCoordX[c]!=x){
+     int tempX = custCoordX[c];
+     if (custCoordX[c] < x){
+          custCoordX[c] = custCoordX[c] + 5;
+        }
+        else if (custCoordX[c] > x){
+         custCoordX[c] = custCoordX[c] - 5;
+      }
+       if (outOfBounds(custCoordX[c],custCoordY[c])){
+         custCoordX[c]= tempX;
+         moveTowardY(c,x,y);
+       }
+    }
+    else{
+      moveTowardY(c,x,y);
+    }
 }
 
+void moveTowardY(int c, int x, int y){
+  if (custCoordY[c]!=y){
+        if (custCoordY[c] < y){
+          custCoordY[c] = custCoordY[c] + 5;
+        }
+        else if (custCoordY[c] > y){
+          custCoordY[c] = custCoordY[c] - 5;
+        }
+    }
+}
 /*void makeText(){
    textAlign(400,1000);
    if(coorX == 100 && coorY == 100){
