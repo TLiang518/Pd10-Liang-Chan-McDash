@@ -1,6 +1,6 @@
 PFont myFont;
 PImage bg, img;
-String[] images ={"testpic.jpg","coorfind.png"};
+String[] images ={"Gold1.png"};
 int index = 0;
 int screen = 1;
 int xcor = 50;
@@ -9,7 +9,6 @@ void setup(){
     size(1200,650);
     myFont = createFont("Georgia",20,true);
     //textFont(font);
-    bg = loadImage(images[index]);
 
 }
 
@@ -48,10 +47,7 @@ void keyPressed(){
   }
 }
 void gameSetup(){
-    bg = loadImage(images[0]);
-    image(bg,CENTER,CENTER);
     
-    img = loadImage(images[1]);
-    img.resize(10,10);
+    img = loadImage(images[0]);
     image(img,xcor,ycor);
 }
