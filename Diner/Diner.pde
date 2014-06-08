@@ -15,6 +15,9 @@ int climit = 10;
 int foodOrder = 0;
 int goalX = 0;
 int goalY = 0;
+int mousex = 480;
+int mousey = 100;
+int served = 0;
 int[] custCoordX = new int[20];
 int[] custCoordY = new int[20];
 int[] custPlace = new int[20];
@@ -134,6 +137,8 @@ void gameSetup(){
     text(cmin+ ":" + csec, 1100,50);
 
    foodAppear();//testing
+   getFood();
+   displayFood();
   
    for (int i = 0; i < numCust; i ++){
       image(custim[i], custCoordX[i], custCoordY[i]);          
@@ -191,17 +196,32 @@ void gameSetup(){
 
 
 void foodAppear(){
-  int passedTime = millis() -savedTime;    
+  //int passedTime = millis() -savedTime;    
    if(Customer.giveOrder() == 1){
-     if(passedTime > 5000){
+   //  if(passedTime > 5000){
      img3 = loadImage(images[8]); 
      img3.resize(45,57);
-     image(img3, 480,100);
+     image(img3, mousex,mousey);
      }
    }
-}
+//}
 
 void getFood(){
+  if (mouseX <= mousex + 15 && mouseX >= mousex - 15 && mouseY <= mousey+15 && mouseY >= mousey-15){
+     img3 = loadImage(images[8]); 
+     img3.resize(45,57);
+     image(img3, mousex+5,mousey+100);
+     served ++;
+  }
+  
+}
+
+void displayFood(){
+    if (served != 0){
+     img3 = loadImage(images[8]); 
+     img3.resize(45,57);
+     image(img3, mousex+5,mousey+100); //replace with coordinates of requested tables.
+    }
 }
 
 boolean outOfBounds(int x,int y){
