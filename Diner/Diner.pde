@@ -109,7 +109,6 @@ void mousePressed(){
        }
      }
      else if (cust2 >= 0){
-       moveToward(cust2,140,10);
        custPlace[cust2]=0;
        table[cust2]=-1;
      }
@@ -159,15 +158,20 @@ void gameSetup(){
       else if (custPlace[i]>=3 && custPlace[i]<=7){
         moveToward(i, 455 + 155*(custPlace[i]-3), 165);
       }
+      else if (custPlace[i]==0){
+        if (custCoordX[i]==140 && custCoordY[i]==10){
+          custCoordX[i]=0;
+          custCoordY[i]=0;
+          custim[i]=null;
+          customers[i]=null;
+          numCust--;
+        }
+        else {
+          moveToward(i,140,10);
+        }
+      }
       else {
         moveToward(i, 455 + 155*(custPlace[i]-8), 325);
-      }
-      if (custPlace[i]==0 && custCoordX[i]==140 && custCoordY[i]==10){
-        custCoordX[i]=0;
-        custCoordY[i]=0;
-        custim[i]=null;
-        customers[i]=null;
-        numCust--;
       }
     }
 
@@ -177,7 +181,7 @@ void gameSetup(){
     if (passedTime > 10000){
         if (numCust < 10){  
           int temp = (int)(Math.random()*4);
-          int index = addToArray(customers,null,newCustomer(p));
+          int index = addToArray(customers,new Customer(p));
           if (custLine2.size()<custLine1.size()){
             custLine2.add(index);
             custPlace[index]=2;
@@ -215,6 +219,7 @@ int addToArray(Object[] a, Object addvalue){
    return i;
   }
  }
+ return -1;
 }
 
 int addToArray(int[] a, int nullvalue, int addvalue){
@@ -224,6 +229,7 @@ int addToArray(int[] a, int nullvalue, int addvalue){
    return i;
   }
  }
+ return -1;
 }
 
 void foodOrder(){
@@ -378,6 +384,7 @@ int indexOfArray(int[] a, int i){
       return k;
     }
   }
+  return -1;
 }
 
 int overCustTable(int x, int y){
