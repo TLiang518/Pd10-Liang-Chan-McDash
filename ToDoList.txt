@@ -10,5 +10,4 @@ Java-Processing Interactions:
 
 Processing Stuff:
 -Display Score
--Customers line up
 -Customers exit
