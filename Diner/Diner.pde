@@ -19,7 +19,7 @@ int served = 0, served2 = 0, served3 = 0;
 int[] custCoordX = new int[20];
 int[] custCoordY = new int[20];
 int[] custPlace = new int[20];
-ArrayList<Integer> table = new ArrayList<Integer>();
+int[] table = new int[20];
 ArrayList<Integer> custLine1 = new ArrayList<Integer>();
 ArrayList<Integer> custLine2 = new ArrayList<Integer>();
 Player p;
@@ -96,9 +96,10 @@ void keyPressed(){
 void mousePressed(){
   if (screen==1){
      int cust = overCust(mouseX,mouseY);
+     int cust2 = overCustTable(mouseX, mouseY);
      if (cust >= 0){
        println("Clicked picture");
-       table.add(cust);
+       addToArray(table,-1,cust);
        custPlace[cust]=3+(indexOfArray(table,cust));
        if (custLine1.indexOf(cust)>=0){
          custLine1.remove(custLine1.indexOf(cust));
@@ -107,7 +108,6 @@ void mousePressed(){
          custLine2.remove(custLine2.indexOf(cust));
        }
      }
-     int cust2 = overCustTable(mouseX, mouseY);
      else if (cust2 >= 0){
        moveToward(cust2,140,10);
        custPlace[cust2]=0;
@@ -208,12 +208,21 @@ void gameSetup(){
     }
 }
 
-int addToArray(Object[] a, Object nullvalue, Object addvalue){
+int addToArray(Object[] a, Object addvalue){
+ for (int i = 0; i < a.length; i ++){
+  if (a[i]==null){
+   a[i]=addvalue;
+   return i;
+  }
+ }
+}
+
+int addToArray(int[] a, int nullvalue, int addvalue){
  for (int i = 0; i < a.length; i ++){
   if (a[i]==nullvalue){
    a[i]=addvalue;
    return i;
-  } 
+  }
  }
 }
 
@@ -244,8 +253,7 @@ void foodAppear(){
      img3.resize(42,59);
      image(img3, mousex+100,mousey);
      }
-     
-   }
+      }      
 //}
 
 void getFood(){
@@ -281,7 +289,7 @@ void displayFood(){
     }
 }
 
-
+   
 boolean outOfBounds(int x,int y){
   //Walls
   if ((x<-10)||(x>1165)||(y<-10)||(y>490)){
@@ -297,7 +305,7 @@ boolean outOfBounds(int x,int y){
   } 
   return false;
 }
-
+   
 void moveToward(){
     if (goalX!=0){
       int tempX = coorX;
@@ -333,7 +341,7 @@ void moveTowardY(){
         }
     }
 }
-
+   
 void moveToward(int c, int x, int y){
    if (custCoordX[c]!=x){
      int tempX = custCoordX[c];
@@ -373,16 +381,15 @@ int indexOfArray(int[] a, int i){
 }
 
 int overCustTable(int x, int y){
-  int overCust(int x, int y);
   for (int i = 0; i < 20; i ++){
-    if ((custCoordX[i]!=0)&&(x>=custCoordX[i] && x<=custCoordX[i]+custim[i].width) && (y>=custCoordY[i] && y<=custCoordY[i]+custim[i].height) && (indexOfArray(table,i)>=0){
+    if ((custCoordX[i]!=0)&&(x>=custCoordX[i] && x<=custCoordX[i]+custim[i].width) && (y>=custCoordY[i] && y<=custCoordY[i]+custim[i].height) && (indexOfArray(table,i)>=0)){
       return i;
     }
   }
   return -1;
 }
 
-
+   
 int overCust(int x, int y){
   for (int i = 0; i < numCust; i ++){
     if ((x>=custCoordX[i] && x<=custCoordX[i]+custim[i].width) && (y>=custCoordY[i] && y<=custCoordY[i]+custim[i].height) && (custLine1.indexOf(i)>=0 || custLine2.indexOf(i)>=0)){
