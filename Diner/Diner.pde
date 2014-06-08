@@ -184,7 +184,7 @@ void getFood(){
 
 boolean outOfBounds(int x,int y){
   //Walls
-  if ((x<-10)||(x>1165)||(y<-10)||(y>580)){
+  if ((x<-10)||(x>1165)||(y<-10)||(y>490)){
     return true;
   }
   //Kitchen
