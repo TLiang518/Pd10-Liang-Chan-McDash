@@ -105,6 +105,12 @@ void mousePressed(){
          custLine2.remove(custLine2.indexOf(cust));
        }
      }
+     int cust2 = overCustTable(mouseX, mouseY);
+     else if (cust2 >= 0){
+       moveToward(cust2,140,10);
+       custPlace[cust2]=0;
+       tables.remove(cust2);
+     }
      else{
      int tempX = goalX;
      int tempY = goalY;
@@ -139,7 +145,7 @@ void gameSetup(){
    foodAppear();//testing
    getFood();
    displayFood();
-  
+    
    for (int i = 0; i < numCust; i ++){
       image(custim[i], custCoordX[i], custCoordY[i]);          
       if (custPlace[i]==1){
@@ -154,7 +160,13 @@ void gameSetup(){
       else {
         moveToward(i, 455 + 155*(custPlace[i]-8), 325);
       }
-      
+      if (custPlace[i]==0 && custCoordX[i]==140 && custCoordY[i]==10){
+        custCoordX[i]=0;
+        custCoordY[i]=0;
+        custim[i]=null;
+        customers[i]=null;
+        numCust--;
+      }
     }
 
     moveToward();
@@ -304,6 +316,16 @@ void moveTowardY(int c, int x, int y){
           custCoordY[c] = custCoordY[c] - 5;
         }
     }
+}
+
+int overCustTable(int x, int y){
+  int overCust(int x, int y){
+  for (int i = 0; i < numCust; i ++){
+    if ((x>=custCoordX[i] && x<=custCoordX[i]+custim[i].width) && (y>=custCoordY[i] && y<=custCoordY[i]+custim[i].height) && (tables.indexOf(i)>=0){
+      return i;
+    }
+  }
+  return -1;
 }
 
 int overCust(int x, int y){
