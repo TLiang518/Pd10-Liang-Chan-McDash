@@ -1,5 +1,4 @@
 Java-Processing Interactions:
--Customer-Sit on click
 -Customer-Order
 -Customer-Consume
 -Customer-Exit
@@ -11,3 +10,6 @@ Java-Processing Interactions:
 Processing Stuff:
 -Display Score
 -Customers exit
+-REDO THE SPRITES
+
+-IMPLEMENT DATA STRUCTURE BETTER
