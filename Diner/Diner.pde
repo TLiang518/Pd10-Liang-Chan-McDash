@@ -1,31 +1,30 @@
 PFont myFont, myFont2;
 PImage bg, img, img2, img3;
 PImage[] custim = new PImage[20];
-String[] images = {"diner2.jpg","testpic.jpg","girl.png", "coorfind.png","peter.png","stewie.png","chris.png","lois.png", "icecream.png"};
+String[] images = {"diner2.jpg","testpic.jpg","girl.png", "coorfind.png","peter.png","stewie.png","chris.png","lois.png", "icecream.png", "bacon.png","muffin.png"};
 int index=0;
 int screen = 0;
-int coorX = 100;
-int coorY = 100;
-int a = 0;
-int b = 0; 
+int coorX = 100 , coorY = 100;
+int a = 0, b = 0; 
 int savedTime;
 int numCust = 0;
 int c, cmin, csec, cmil;
 int climit = 10;
 int foodOrder = 0;
-int goalX = 0;
-int goalY = 0;
-int mousex = 480;
-int mousey = 100;
-int served = 0;
+int goalX = 0, goalY = 0;
+int mousex = 480, mousey = 100;
+int mousex2 = 530;
+int mousex3 = 580;
+int served = 0, served2 = 0, served3 = 0;
 int[] custCoordX = new int[20];
 int[] custCoordY = new int[20];
 int[] custPlace = new int[20];
-int[] table = new int[20];
+ArrayList<Integer> table = new ArrayList<Integer>();
 ArrayList<Integer> custLine1 = new ArrayList<Integer>();
 ArrayList<Integer> custLine2 = new ArrayList<Integer>();
 Player p;
 Customer[] customers = new Customer[20];
+
 
 void setup(){
     size(1200,650);
@@ -218,6 +217,13 @@ int addToArray(Object[] a, Object nullvalue, Object addvalue){
  }
 }
 
+void foodOrder(){
+   //random? customer orders food
+   //display text
+   //if(food is requested)
+   //foodAppear();
+}
+
 void foodAppear(){
   //int passedTime = millis() -savedTime;    
    if(Customer.giveOrder() == 1){
@@ -226,17 +232,35 @@ void foodAppear(){
      img3.resize(45,57);
      image(img3, mousex,mousey);
      }
+      else if(Customer.giveOrder() == 2){
+   //  if(passedTime > 5000){
+     img3 = loadImage(images[9]); 
+     img3.resize(50,50);
+     image(img3, mousex+50,mousey);
+     }
+      else if(Customer.giveOrder() == 3){
+   //  if(passedTime > 5000){
+     img3 = loadImage(images[10]); 
+     img3.resize(42,59);
+     image(img3, mousex+100,mousey);
+     }
+     
    }
 //}
 
 void getFood(){
   if (mouseX <= mousex + 15 && mouseX >= mousex - 15 && mouseY <= mousey+15 && mouseY >= mousey-15){
-     img3 = loadImage(images[8]); 
-     img3.resize(45,57);
-     image(img3, mousex+5,mousey+100);
      served ++;
   }
-  
+   if (mouseX <= mousex2 + 15 && mouseX >= mousex2 - 15 && mouseY <= mousey+15 && mouseY >= mousey-15){
+
+     served2 ++;
+   }
+      if (mouseX <= mousex3 + 15 && mouseX >= mousex2 - 15 && mouseY <= mousey+15 && mouseY >= mousey-15){
+     served3 ++;
+    
+      }
+ 
 }
 
 void displayFood(){
@@ -245,7 +269,18 @@ void displayFood(){
      img3.resize(45,57);
      image(img3, mousex+5,mousey+100); //replace with coordinates of requested tables.
     }
+    if (served2 != 0){
+     img3 = loadImage(images[9]); 
+     img3.resize(50,50);
+     image(img3, mousex+20,mousey+100);//tmp
+    }
+    if (served3 != 0){
+      img3 = loadImage(images[10]); 
+     img3.resize(42,59);
+     image(img3, mousex+50,mousey+100);//tmp
+    }
 }
+
 
 boolean outOfBounds(int x,int y){
   //Walls
