@@ -21,7 +21,7 @@ int served = 0;
 int[] custCoordX = new int[20];
 int[] custCoordY = new int[20];
 int[] custPlace = new int[20];
-ArrayList<Integer> table = new ArrayList<Integer>();
+int[] table = new int[20];
 ArrayList<Integer> custLine1 = new ArrayList<Integer>();
 ArrayList<Integer> custLine2 = new ArrayList<Integer>();
 Player p;
@@ -33,6 +33,9 @@ void setup(){
     myFont2 = createFont("Verdana",5,true);
     bg = loadImage(images[index]);
     savedTime=millis();
+    for (int i=0; i < table.length; i ++){
+      table[i]=-1;
+    }
 }
 
 void draw(){
@@ -97,7 +100,7 @@ void mousePressed(){
      if (cust >= 0){
        println("Clicked picture");
        table.add(cust);
-       custPlace[cust]=3+(table.indexOf(cust));
+       custPlace[cust]=3+(indexOfArray(table,cust));
        if (custLine1.indexOf(cust)>=0){
          custLine1.remove(custLine1.indexOf(cust));
        }
@@ -109,7 +112,7 @@ void mousePressed(){
      else if (cust2 >= 0){
        moveToward(cust2,140,10);
        custPlace[cust2]=0;
-       tables.remove(cust2);
+       table[cust2]=-1;
      }
      else{
      int tempX = goalX;
@@ -175,37 +178,45 @@ void gameSetup(){
     if (passedTime > 10000){
         if (numCust < 10){  
           int temp = (int)(Math.random()*4);
-          customers[numCust]=new Customer(p);
+          int index = addToArray(customers,null,newCustomer(p));
           if (custLine2.size()<custLine1.size()){
-            custLine2.add(numCust);
-            custPlace[numCust]=2;
+            custLine2.add(index);
+            custPlace[index]=2;
           }
           else{
-            custLine1.add(numCust);
-            custPlace[numCust]=1;
+            custLine1.add(index);
+            custPlace[index]=1;
           }
-          custim[numCust]=loadImage(images[4+temp]);
+          custim[index]=loadImage(images[4+temp]);
           if(4+temp == 4){
-            custim[numCust].resize(60,120);
+            custim[index].resize(60,120);
           }
           if(4+temp == 5){
-            custim[numCust].resize(35,40);
+            custim[index].resize(35,40);
           }
           if(4+temp == 6){
-            custim[numCust].resize(83,100);
+            custim[index].resize(83,100);
           }
           if(4+temp == 7){
-            custim[numCust].resize(68,128);
+            custim[index].resize(68,128);
           }
           //int tempCoord = (int)(Math.random()*500);
-          custCoordX[numCust]=140;
-          custCoordY[numCust]=10;
+          custCoordX[index]=140;
+          custCoordY[index]=10;
           numCust ++;
         }
         savedTime=millis();
     }
 }
 
+int addToArray(Object[] a, Object nullvalue, Object addvalue){
+ for (int i = 0; i < a.length; i ++){
+  if (a[i]==nullvalue){
+   a[i]=addvalue;
+   return i;
+  } 
+ }
+}
 
 void foodAppear(){
   //int passedTime = millis() -savedTime;    
@@ -318,15 +329,24 @@ void moveTowardY(int c, int x, int y){
     }
 }
 
+int indexOfArray(int[] a, int i){
+  for (int k = 0; k < a.length; k ++){
+    if (a[k]==i){
+      return k;
+    }
+  }
+}
+
 int overCustTable(int x, int y){
-  int overCust(int x, int y){
-  for (int i = 0; i < numCust; i ++){
-    if ((x>=custCoordX[i] && x<=custCoordX[i]+custim[i].width) && (y>=custCoordY[i] && y<=custCoordY[i]+custim[i].height) && (tables.indexOf(i)>=0){
+  int overCust(int x, int y);
+  for (int i = 0; i < 20; i ++){
+    if ((custCoordX[i]!=0)&&(x>=custCoordX[i] && x<=custCoordX[i]+custim[i].width) && (y>=custCoordY[i] && y<=custCoordY[i]+custim[i].height) && (indexOfArray(table,i)>=0){
       return i;
     }
   }
   return -1;
 }
+
 
 int overCust(int x, int y){
   for (int i = 0; i < numCust; i ++){
@@ -336,3 +356,4 @@ int overCust(int x, int y){
   }
   return -1;
 }
+
