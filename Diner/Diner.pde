@@ -18,6 +18,7 @@ int goalY = 0;
 int[] custCoordX = new int[20];
 int[] custCoordY = new int[20];
 int[] custPlace = new int[20];
+ArrayList<Integer> table = new ArrayList<Integer>();
 ArrayList<Integer> custLine1 = new ArrayList<Integer>();
 ArrayList<Integer> custLine2 = new ArrayList<Integer>();
 Player p;
@@ -89,6 +90,19 @@ void keyPressed(){
 
 void mousePressed(){
   if (screen==1){
+     int cust = overCust(mouseX,mouseY);
+     if (cust >= 0){
+       println("Clicked picture");
+       table.add(cust);
+       custPlace[cust]=3+(table.indexOf(cust));
+       if (custLine1.indexOf(cust)>=0){
+         custLine1.remove(custLine1.indexOf(cust));
+       }
+       else{
+         custLine2.remove(custLine2.indexOf(cust));
+       }
+     }
+     else{
      int tempX = goalX;
      int tempY = goalY;
      goalX = (mouseX/5)*5;
@@ -98,6 +112,7 @@ void mousePressed(){
         goalX = tempX;
         goalY = tempY;
       }
+     }
   }
 }
 
@@ -127,7 +142,14 @@ void gameSetup(){
       }
       else if (custPlace[i]==2){
         moveToward(i,180,445-105*(custLine2.indexOf(i)));
-      }  
+      }
+      else if (custPlace[i]>=3 && custPlace[i]<=7){
+        moveToward(i, 455 + 155*(custPlace[i]-3), 165);
+      }
+      else {
+        moveToward(i, 455 + 155*(custPlace[i]-8), 325);
+      }
+      
     }
 
     moveToward();
@@ -263,13 +285,12 @@ void moveTowardY(int c, int x, int y){
         }
     }
 }
-/*void makeText(){
-   textAlign(400,1000);
-   if(coorX == 100 && coorY == 100){
-     text("Use ARROW KEYS to move!",400,1000);
-     textFont(myFont2);
-     fill(0);
-     textSize(50);
-   }
+
+int overCust(int x, int y){
+  for (int i = 0; i < numCust; i ++){
+    if ((x>=custCoordX[i] && x<=custCoordX[i]+custim[i].width) && (y>=custCoordY[i] && y<=custCoordY[i]+custim[i].height) && (custLine1.indexOf(i)>=0 || custLine2.indexOf(i)>=0)){
+      return i;
+    }
+  }
+  return -1;
 }
-*/
