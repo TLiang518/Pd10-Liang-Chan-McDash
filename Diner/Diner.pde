@@ -255,13 +255,6 @@ int addToArray(int[] a, int nullvalue, int addvalue){
 }
 
 
-
-/*void foodOrder(){
-    int orderNum = Customer.giveOrder();
-    foodAppear();
-    
-}
-*/
 void foodAppear(){
   if (madeOrders.size()>0){
      for (int i = 0; i < madeOrders.size(); i ++){
@@ -278,44 +271,6 @@ void foodAppear(){
      }
   }
 }
-
-void getFood(){
-
-    if(madeOrders[i] == 1){
-      text("ICECREAM",20,900);
-    }
-    if(madeOrders[i] == 2){
-      text("BACON",50,900);
-    }
-    if(madeOrders[i] == 3){
-      text("MUFFIN", 90, 900);
-    }
-}
-    
-/*   if(Customer.giveOrder()== 1){
-      if(passedTime > 5000){
-     img3 = loadImage(images[8]); 
-     img3.resize(45,57);
-     image(img3, mousex,mousey);
-     }
-      else if(Customer.giveOrder() == 2){
-   //  if(passedTime > 5000){
-     img3 = loadImage(images[9]); 
-     img3.resize(50,50);
-     image(img3, mousex+50,mousey);
-     }
-      else if(Customer.giveOrder()==  3){
-   //  if(passedTime > 5000){
-     img3 = loadImage(images[10]); 
-     img3.resize(42,59);
-     image(img3, mousex+100,mousey);
-     }
-      }      
-*/
-//}
-
-
-
 
 void displayFood(){
     if (served != 0){
@@ -473,7 +428,6 @@ void displayScore(){
   }
 }
 
-<<<<<<< HEAD
 String orderToString(int c){
   if (c==-1){
     return "Empty";
