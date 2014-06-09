@@ -7,13 +7,9 @@ int a = 0, b = 0;
 int coorX = 100 , coorY = 100;
 int savedTime1,savedTime2;
 int numCust = 0;
-int c, cmin, csec, cmil;
-int climit = 10;
-int foodOrder = 0;
+int c, cmin, csec;
+int kitchenX = 480, kitchenY = 100;
 int goalX = 0, goalY = 0;
-int mousex = 480, mousey = 100;
-int served = 0, served2 = 0, served3 = 0;
-int orderNum = 0;
 int score = 0;
 int corder = -1;
 int[] custCoordX = new int[20];
@@ -82,7 +78,7 @@ void intro(){
     textAlign(CENTER,CENTER);
     text("McDash",width/2,height/2);
     textFont(myFont);
-    fill(0);
+    fill(205,200,74);
     textSize(200);
     startScreen();
 }
@@ -110,7 +106,7 @@ void keyPressed(){
       else if(keyCode == RIGHT){
         coorX = coorX + 5;
       }
-      if (outOfBounds(coorX,coorY)){
+      if (outOfBounds(coorX,coorY,true)){
         //println("("+(coorX+a)+","+(coorY+b)+")");
         coorX = tempX;
         coorY = tempY;
@@ -149,7 +145,7 @@ void mousePressed(){
      int tempY = goalY;
      goalX = (mouseX/5)*5;
      goalY = (mouseY/5)*5;
-     if (outOfBounds(goalX,goalY)){
+     if (outOfBounds(goalX,goalY,true)){
         //println("("+(coorX+a)+","+(coorY+b)+")");
         goalX = tempX;
         goalY = tempY;
@@ -187,7 +183,7 @@ void gameSetup(){
     foodim.add(loadImage(images[8+madeOrders.get(madeOrders.size()-1)]));
   }
   
-  if (coorX >= 435 && coorX <= 510 && coorY >= 60 && coorY <= 130 && corder == -1){
+  if (coorX >= 460 && coorX <= 510 && coorY >= 90 && coorY <= 145 && corder == -1){
     getOrder();
   }
   
@@ -217,8 +213,8 @@ void refreshCustomers(){
         else if (custPlace[i]==2){
           moveToward(i,180,445-105*(custLine2.indexOf(i)));
         }
-        else if (custPlace[i]>=3 && custPlace[i]<=7){
-          moveToward(i, 455 + 155*(custPlace[i]-3), 165);
+        else if (custPlace[i]>=3){
+          moveToSeat(i);
         }
         else if (custPlace[i]==0){
           if (custCoordX[i]==140 && custCoordY[i]==10){
@@ -232,11 +228,41 @@ void refreshCustomers(){
             moveToward(i,140,10);
           }
         }
-        else {
-          moveToward(i, 455 + 155*(custPlace[i]-8), 325);
-        }
       }
     }
+}
+
+void moveToSeat(int i){
+   if ((custPlace[i])==3){
+     moveToward(i, 465, 220);
+   }
+   else if ((custPlace[i])==4){
+     moveToward(i, 615, 220);
+   }
+   else if ((custPlace[i])==5){
+     moveToward(i, 760, 220);
+   }
+   else if ((custPlace[i])==6){
+     moveToward(i, 905, 220);
+   }
+   else if ((custPlace[i])==7){
+     moveToward(i, 1055, 220);
+   }
+   else if ((custPlace[i])==8){
+     moveToward(i, 465, 375);
+   }
+   else if ((custPlace[i])==9){
+     moveToward(i, 615, 375);
+   }
+   else if ((custPlace[i])==10){
+     moveToward(i, 760, 375);
+   }
+   else if ((custPlace[i])==11){
+     moveToward(i, 905, 375);
+   }
+   else if ((custPlace[i])==12){
+     moveToward(i, 1055, 375);
+   }
 }
 
 void newCustomer(){
@@ -293,43 +319,32 @@ void foodAppear(){
        if (madeOrders.get(i)==2){
          foodim.get(i).resize(42,59);
        }
-       image(foodim.get(i), mousex + (i*50), mousey);
+       image(foodim.get(i), kitchenX + (i*50), kitchenY);
      }
   }
 }
-
-void displayFood(){
-    if (served != 0){
-     img3 = loadImage(images[8]); 
-     img3.resize(45,57);
-     image(img3, mousex+5,mousey+100); //replace with coordinates of requested tables.
-    }
-    if (served2 != 0){
-     img3 = loadImage(images[9]); 
-     img3.resize(50,50);
-     image(img3, mousex+20,mousey+100);//tmp
-    }
-    if (served3 != 0){
-      img3 = loadImage(images[10]); 
-     img3.resize(42,59);
-     image(img3, mousex+50,mousey+100);//tmp
-    }
-}
-
    
-boolean outOfBounds(int x,int y){
+boolean outOfBounds(int x,int y,boolean chairs){
   //Walls
-  if ((x<-10)||(x>1165)||(y<-10)||(y>490)){
+  if ((x<-10)||(x>1165)||(y<-10)||(y>520)){
     return true;
   }
   //Kitchen
-  if (x>430 && x<1075 && y<115){
+  if (x>430 && x<1075 && y<135){
     return true;
   }
-  //tables
-  if (((y>165 && y<290)||(y>325 && y<445))&&((x>415 && x<490)||(x>570 && x<645)||(x>715 && x<790)||(x>865 && x<950)||(x>1010 && x<1085))){
-    return true;
-  } 
+  //tables with chairs
+  if (chairs){
+    if (((y>180 && y<320)||(y>335 && y<480))&&((x>415 && x<500)||(x>570 && x<650)||(x>715 && x<795)||(x>865 && x<945)||(x>1010 && x<1090))){
+      return true;
+    } 
+  }
+  //tables without chairs
+  else{
+    if (((y>225 && y<320)||(y>385 && y<480))&&((x>415 && x<500)||(x>570 && x<650)||(x>715 && x<795)||(x>865 && x<945)||(x>1010 && x<1090))){
+      return true;
+    } 
+  }
   return false;
 }
    
@@ -345,7 +360,7 @@ void moveToward(){
        else{
          goalX = 0;
        }
-       if (outOfBounds(coorX,coorY)){
+       if (outOfBounds(coorX,coorY,true)){
          coorX= tempX;
          moveTowardY();
        }
@@ -378,7 +393,7 @@ void moveToward(int c, int x, int y){
         else if (custCoordX[c] > x){
          custCoordX[c] = custCoordX[c] - 5;
       }
-       if (outOfBounds(custCoordX[c],custCoordY[c])){
+       if (outOfBounds(custCoordX[c],custCoordY[c],false)){
          custCoordX[c]= tempX;
          moveTowardY(c,x,y);
        }
@@ -497,28 +512,28 @@ void displayOrders(){
 
 int nearTable(int x, int y){
   int row = -1;
-  if (y<=290 && y>=165){
+  if (y<=180 && y>=320){
     row = 0;
   }
-  else if (y<=445 && y>=325){
+  else if (y<=335 && y>=480){
     row = 5;
   }
   else{
     return -1;
   }
-  if (x>=415 && x<=495){
+  if (x>=415 && x<=500){
     return row + 0;
   }
-  if (x>=570 && x<=645){
+  if (x>=570 && x<=650){
     return row + 1;
   }
-  if (x>=715 && x<=790){
+  if (x>=715 && x<=795){
     return row + 2;
   }
-  if (x>=865 && x<=950){
+  if (x>=865 && x<=945){
     return row + 3;
   }
-  if (x>=1010 && x<=1085){
+  if (x>=1010 && x<=1090){
     return row + 4;
   }
   return -1;
@@ -542,25 +557,25 @@ void putOrder(int t, int ord){
    int x = 0;
    int y = 0;
    if (t <= 4){
-     y = 270;
+     y = 275;
    }
    else {
-     y = 425;
+     y = 435;
    }
    if (t%5==0){
-     x= 462;
+     x= 455;
    }
    else if (t%5==1){
-     x = 612;
+     x = 610;
    }
    else if (t%5==2){
-     x = 757;
+     x = 755;
    }
    else if (t%5==3){
-     x = 907;
+     x = 905;
    }
    else if (t%5==4){
-     x = 1052;
+     x = 1050;
    }
    PImage food= loadImage(images[8+ord]);
    if (ord == 0){
