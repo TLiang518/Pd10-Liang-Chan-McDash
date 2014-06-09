@@ -2,10 +2,9 @@ PFont myFont, myFont2;
 PImage bg, img, img2, img3;
 PImage[] custim = new PImage[20];
 String[] images = {"diner2.jpg","testpic.jpg","girl.png", "coorfind.png","peter.png","stewie.png","chris.png","lois.png", "icecream.png", "bacon.png","muffin.png"};
-int index=0;
 int screen = 0;
+int a = 0, b = 0;
 int coorX = 100 , coorY = 100;
-int a = 0, b = 0; 
 int savedTime1,savedTime2;
 int numCust = 0;
 int c, cmin, csec, cmil;
@@ -37,7 +36,7 @@ void setup(){
     size(1200,650);
     myFont = createFont("Georgia",20,true);
     myFont2 = createFont("Verdana",5,true);
-    bg = loadImage(images[index]);
+    bg = loadImage(images[0]);
     savedTime1=millis();
     for (int i=0; i < table.length; i ++){
       table[i]=-1;
@@ -63,7 +62,7 @@ void draw(){
 }
 
 void intro(){
-    bg = loadImage(images[index]);
+    bg = loadImage(images[0]);
     image(bg,0,0);
     textAlign(CENTER,CENTER);
     text("McDash",width/2,height/2);
@@ -230,6 +229,11 @@ void gameSetup(){
     savedTime2 = millis();
     foodim.add(loadImage(images[8+madeOrders.get(madeOrders.size()-1)]));
   }
+  
+  if (coorX >= 435 && coorX <= 510 && coorY >= 60 && coorY <= 130 && corder == -1){
+    getOrder();
+  }
+  
   convertOrdertoString();
   foodAppear();
   displayOrders();
@@ -468,6 +472,11 @@ void displayOrders(){
   PFont f2 = createFont("Arial",16, true);
   textFont(f2);
   textAlign(LEFT);
-  text("Order in Hand: " + currentOrder, 25, 630);
-  
+  text("Order in Hand: " + currentOrder, 25, 630);  
+}
+
+void getOrder(){
+  if (madeOrders.size()>0){
+    corder = madeOrders.remove(0);
+  }
 }

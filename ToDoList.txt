@@ -1,8 +1,6 @@
 Java-Processing Interactions:
--Customer-Order
 -Customer-Consume
 -Customer-Exit
--Player-getFood
 -Player-giveFood
 -Player-clearTable(?)
 
