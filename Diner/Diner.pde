@@ -70,6 +70,10 @@ void timer(){
       else{
         text(cmin + ":0" +csec, 600,630);
       }
+      if (c <= 0){
+        println("Your final score is: " + score);
+        exit();
+      } 
 }
 
 void intro(){
@@ -124,7 +128,6 @@ void mousePressed(){
      int cust = overCust(mouseX,mouseY);
      int cust2 = overCustTable(mouseX, mouseY);
      if (cust >= 0){
-       println("Clicked picture");
        addToArray(table,-1,cust);
        orders.add(customers[cust].giveOrder());
        custPlace[cust]=3+(indexOfArray(table,cust));
@@ -135,9 +138,11 @@ void mousePressed(){
          custLine2.remove(custLine2.indexOf(cust));
        }
      }
-     else if (cust2 >= 0){
+     else if (cust2 >= 0 && receivedOrder[indexOfArray(table,cust2)]==3){
        custPlace[cust2]=0;
        table[cust2]=-1;
+       receivedOrder[cust2]=-1;
+       score = score + 20;
      }
      else{
      int tempX = goalX;
