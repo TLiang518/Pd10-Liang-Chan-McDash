@@ -1,7 +1,7 @@
 PFont myFont, myFont2;
 PImage bg, img, img2, img3;
 PImage[] custim = new PImage[20];
-String[] images = {"diner2.jpg","testpic.jpg","girl.png", "coorfind.png","peter.png","stewie.png","chris.png","lois.png", "icecream.png", "bacon.png","muffin.png","plate.png"};
+String[] images = {"diner2.jpg","testpic.jpg","Red.png", "coorfind.png","Blue.png","Whitney.png","Falkner.png","Misty.png", "icecream.png", "bacon.png","muffin.png","plate.png"};
 int screen = 0;
 int a = 0, b = 0;
 int coorX = 100 , coorY = 100;
@@ -162,7 +162,7 @@ void mousePressed(){
 void gameSetup(){
     bg = loadImage(images[1]);
     img = loadImage(images[2]); 
-    img.resize(67,96);
+    img.resize(img.width*2,img.height*2);
     image(bg,CENTER,CENTER);
     image(img,coorX,coorY);
     fill(207,218,65);
@@ -252,24 +252,12 @@ void newCustomer(){
             custPlace[index]=1;
           }
           custim[index]=loadImage(images[4+temp]);
-          if(4+temp == 4){
-            custim[index].resize(60,120);
+            custim[index].resize(custim[index].width*2,custim[index].height*2); 
+            custCoordX[index]=140;
+            custCoordY[index]=10;
+            numCust ++;
             
           }
-          if(4+temp == 5){
-            custim[index].resize(35,40);
-          }
-          if(4+temp == 6){
-            custim[index].resize(83,100);
-          }
-          if(4+temp == 7){
-            custim[index].resize(68,128);
-          }
-          //int tempCoord = (int)(Math.random()*500);
-          custCoordX[index]=140;
-          custCoordY[index]=10;
-          numCust ++;
-        }
 }
 
 int addToArray(Object[] a, Object addvalue){
