@@ -1,5 +1,3 @@
-import ddf.mini.*;
-
 PFont myFont, myFont2;
 PImage bg, img, img2, img3;
 PImage[] custim = new PImage[20];
@@ -14,8 +12,6 @@ int kitchenX = 480, kitchenY = 100;
 int goalX = 0, goalY = 0;
 int score = 0;
 int corder = -1;
-AudioPlayer player;
-Minim minim;
 int[] custCoordX = new int[20];
 int[] custCoordY = new int[20];
 int[] custPlace = new int[20];
