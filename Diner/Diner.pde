@@ -21,6 +21,7 @@ int[] custCoordY = new int[20];
 int[] custPlace = new int[20];
 int[] table = new int[10];
 String[] tableOrder = new String[10];
+int[] receivedOrder = new int[10];
 int[] foodCoordX = new int[20];
 int[] foodCoordY = new int[20];
 ArrayList<Integer> orders = new ArrayList<Integer>();
@@ -40,6 +41,7 @@ void setup(){
     savedTime1=millis();
     for (int i=0; i < table.length; i ++){
       table[i]=-1;
+      receivedOrder[i]=-1;
     }
 }
 
@@ -245,10 +247,11 @@ void gameSetup(){
   if (corder >=0 && nearTable(coorX,coorY)>=0){
     if (corder == customers[table[nearTable(coorX,coorY)]].giveOrder()){
       score = score + 10;
+      receivedOrder[nearTable(coorX,coorY)]=corder;
       corder=-1;
     }
   }
-  
+  placeOrders();
   convertOrdertoString();
   foodAppear();
   displayOrders();
@@ -524,3 +527,49 @@ void getOrder(){
     corder = madeOrders.remove(0);
   }
 }
+
+void placeOrders(){
+  for (int i = 0; i < receivedOrder.length; i++){
+    if (receivedOrder[i]!=-1){
+      putOrder(i,receivedOrder[i]);
+    }
+  }
+}
+
+void putOrder(int t, int ord){
+   int x = 0;
+   int y = 0;
+   if (t <= 4){
+     y = 270;
+   }
+   else {
+     y = 425;
+   }
+   if (t%5==0){
+     x= 462;
+   }
+   else if (t%5==1){
+     x = 612;
+   }
+   else if (t%5==2){
+     x = 757;
+   }
+   else if (t%5==3){
+     x = 907;
+   }
+   else if (t%5==4){
+     x = 1052;
+   }
+   PImage food= loadImage(images[8+ord]);
+   if (ord == 0){
+     food.resize(45,57);
+   }
+   else if (ord == 1){
+     food.resize(50,50);
+   }
+   else if (ord == 2){
+     food.resize(42,59);
+   }
+   image(food,x,y);
+}
+
