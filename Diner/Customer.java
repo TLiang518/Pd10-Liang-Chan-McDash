@@ -4,7 +4,7 @@ public class Customer{
     private int points;
     private int numPeople;//maybe we should just keep it simple and make it a set # of peeps
     private int happiness; //correlates with time
-    private static int order = (int)(Math.random()*4);
+    private static int order = (int)(Math.random()*3);
     private int image;
   
 
@@ -15,7 +15,7 @@ public class Customer{
   //max = 10, decrease when they get impatient
   //TIME
   image = (int)(Math.random()*5);
-  order = (int)(Math.random()*5);
+  order = (int)(Math.random()*3);
   numPeople = (int)(Math.random()*4);
     }
     

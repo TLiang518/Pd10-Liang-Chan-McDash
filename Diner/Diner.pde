@@ -6,23 +6,24 @@ int index=0;
 int screen = 0;
 int coorX = 100 , coorY = 100;
 int a = 0, b = 0; 
-int savedTime;
+int savedTime1,savedTime2;
 int numCust = 0;
 int c, cmin, csec, cmil;
 int climit = 10;
 int foodOrder = 0;
 int goalX = 0, goalY = 0;
 int mousex = 480, mousey = 100;
-int mousex2 = 530;
-int mousex3 = 580;
 int served = 0, served2 = 0, served3 = 0;
 int orderNum = 0;
 int[] custCoordX = new int[20];
 int[] custCoordY = new int[20];
 int[] custPlace = new int[20];
-int[] table = new int[20];
+int[] table = new int[10];
 int[] foodCoordX = new int[20];
 int[] foodCoordY = new int[20];
+ArrayList<Integer> orders = new ArrayList<Integer>();
+ArrayList<PImage> foodim = new ArrayList<PImage>();
+ArrayList<Integer> madeOrders = new ArrayList<Integer>();
 ArrayList<Integer> custLine1 = new ArrayList<Integer>();
 ArrayList<Integer> custLine2 = new ArrayList<Integer>();
 Player p;
@@ -34,7 +35,7 @@ void setup(){
     myFont = createFont("Georgia",20,true);
     myFont2 = createFont("Verdana",5,true);
     bg = loadImage(images[index]);
-    savedTime=millis();
+    savedTime1=millis();
     for (int i=0; i < table.length; i ++){
       table[i]=-1;
     }
@@ -104,6 +105,7 @@ void mousePressed(){
      if (cust >= 0){
        println("Clicked picture");
        addToArray(table,-1,cust);
+       orders.add(customers[cust].giveOrder());
        custPlace[cust]=3+(indexOfArray(table,cust));
        if (custLine1.indexOf(cust)>=0){
          custLine1.remove(custLine1.indexOf(cust));
@@ -183,7 +185,7 @@ void gameSetup(){
 
     moveToward();
     
-    int passedTime=millis()-savedTime;
+    int passedTime=millis()-savedTime1;
     if (passedTime > 10000){
         if (numCust < 10){  
           int temp = (int)(Math.random()*4);
@@ -215,8 +217,16 @@ void gameSetup(){
           custCoordY[index]=10;
           numCust ++;
         }
-        savedTime=millis();
+        savedTime1=millis();
     }
+    
+  int passedTime2 = millis() -savedTime2;    
+  if (passedTime2 > 5000 & orders.size() > 0){
+    madeOrders.add(orders.remove(0));
+    savedTime2 = millis();
+    foodim.add(loadImage(images[8+madeOrders.get(madeOrders.size()-1)]));
+  }
+  foodAppear();
 }
 
 int addToArray(Object[] a, Object addvalue){
@@ -248,9 +258,23 @@ int addToArray(int[] a, int nullvalue, int addvalue){
 }
 */
 void foodAppear(){
-  //int passedTime = millis() -savedTime;    
-   if(Customer.giveOrder()== 1){
-   //  if(passedTime > 5000){
+  if (madeOrders.size()>0){
+     for (int i = 0; i < madeOrders.size(); i ++){
+       if (madeOrders.get(i)==0){
+         foodim.get(i).resize(45,57);
+       }
+       if (madeOrders.get(i)==1){
+         foodim.get(i).resize(50,50);
+       }
+       if (madeOrders.get(i)==2){
+         foodim.get(i).resize(42,59);
+       }
+       image(foodim.get(i), mousex + (i*50), mousey);
+     }
+  }
+}
+/*   if(Customer.giveOrder()== 1){
+      if(passedTime > 5000){
      img3 = loadImage(images[8]); 
      img3.resize(45,57);
      image(img3, mousex,mousey);
@@ -268,22 +292,7 @@ void foodAppear(){
      image(img3, mousex+100,mousey);
      }
       }      
-//}
-
-void getFood(){
-  if (mouseX <= mousex + 15 && mouseX >= mousex - 15 && mouseY <= mousey+15 && mouseY >= mousey-15){
-     served ++;
-  }
-   if (mouseX <= mousex2 + 15 && mouseX >= mousex2 - 15 && mouseY <= mousey+15 && mouseY >= mousey-15){
-
-     served2 ++;
-   }
-      if (mouseX <= mousex3 + 15 && mouseX >= mousex2 - 15 && mouseY <= mousey+15 && mouseY >= mousey-15){
-     served3 ++;
-    
-      }
- 
-}
+*/
 
 void displayFood(){
     if (served != 0){
