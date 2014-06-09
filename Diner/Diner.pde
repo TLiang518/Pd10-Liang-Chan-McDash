@@ -467,7 +467,10 @@ void convertOrdertoString(){
       tableOrder[i]="Empty";
     }
     else{
-      if (customers[table[i]].giveOrder()==0){
+      if (customers[table[i]]==null){
+        tableOrder[i]="Empty";
+      }
+      else if (customers[table[i]].giveOrder()==0){
         tableOrder[i]="Ice Cream";
       }
       else if (customers[table[i]].giveOrder()==1){
@@ -541,6 +544,7 @@ int nearTable(int x, int y){
 void getOrder(){
   if (madeOrders.size()>0){
     corder = madeOrders.remove(0);
+    foodim.remove(0);
   }
 }
 
