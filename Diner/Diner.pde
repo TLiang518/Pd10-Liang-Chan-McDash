@@ -16,6 +16,7 @@ int mousex = 480, mousey = 100;
 int mousex2 = 530;
 int mousex3 = 580;
 int served = 0, served2 = 0, served3 = 0;
+int orderNum = 0;
 int[] custCoordX = new int[20];
 int[] custCoordY = new int[20];
 int[] custPlace = new int[20];
@@ -143,37 +144,39 @@ void gameSetup(){
     textSize(50);
     text(cmin+ ":" + csec, 1100,50);
 
-   foodAppear();//testing
-   getFood();
    displayFood();
     
    for (int i = 0; i < numCust; i ++){
-      if (customer[i]!=null){
-        image(custim[i], custCoordX[i], custCoordY[i]);          
-        if (custPlace[i]==1){
-          moveToward(i,95,445-105*(custLine1.indexOf(i)));
-        }
-        else if (custPlace[i]==2){
-          moveToward(i,180,445-105*(custLine2.indexOf(i)));
-        }
-        else if (custPlace[i]>=3 && custPlace[i]<=7){
-          moveToward(i, 455 + 155*(custPlace[i]-3), 165);
-        }
-        else if (custPlace[i]==0){
-          if (custCoordX[i]==140 && custCoordY[i]==10){
-            custCoordX[i]=0;
-            custCoordY[i]=0;
-            custim[i]=null;
-            customers[i]=null;
-            numCust--;
-          }
-          else {
-            moveToward(i,140,10);
-          }
+      image(custim[i], custCoordX[i], custCoordY[i]);          
+      if (custPlace[i]==1){
+        moveToward(i,95,445-105*(custLine1.indexOf(i)));
+      }
+      else if (custPlace[i]==2){
+        moveToward(i,180,445-105*(custLine2.indexOf(i)));
+      }
+      else if (custPlace[i]>=3 && custPlace[i]<=7){
+        moveToward(i, 455 + 155*(custPlace[i]-3), 165);
+      }
+      else if (custPlace[i]==0){
+        if (custCoordX[i]==140 && custCoordY[i]==10){
+          custCoordX[i]=0;
+          custCoordY[i]=0;
+          custim[i]=null;
+          customers[i]=null;
+          numCust--;
         }
         else {
-          moveToward(i, 455 + 155*(custPlace[i]-8), 325);
+          moveToward(i,140,10);
+          int passedTime=millis()-savedTime;
+                    
         }
+      }
+      else {
+        int passedTime=millis()-savedTime;
+        moveToward(i, 455 + 155*(custPlace[i]-8), 325);
+        
+            
+        
       }
     }
 
@@ -195,6 +198,7 @@ void gameSetup(){
           custim[index]=loadImage(images[4+temp]);
           if(4+temp == 4){
             custim[index].resize(60,120);
+            
           }
           if(4+temp == 5){
             custim[index].resize(35,40);
@@ -234,28 +238,28 @@ int addToArray(int[] a, int nullvalue, int addvalue){
  return -1;
 }
 
-void foodOrder(){
-   //random? customer orders food
-   //display text
-   //if(food is requested)
-   //foodAppear();
-}
 
+
+void foodOrder(){
+    int orderNum = Customer.giveOrder();
+    foodAppear();
+    
+}
 void foodAppear(){
   //int passedTime = millis() -savedTime;    
-   if(Customer.giveOrder() == 1){
+   if(orderNum == 1){
    //  if(passedTime > 5000){
      img3 = loadImage(images[8]); 
      img3.resize(45,57);
      image(img3, mousex,mousey);
      }
-      else if(Customer.giveOrder() == 2){
+      else if(orderNum == 2){
    //  if(passedTime > 5000){
      img3 = loadImage(images[9]); 
      img3.resize(50,50);
      image(img3, mousex+50,mousey);
      }
-      else if(Customer.giveOrder() == 3){
+      else if(orderNum == 3){
    //  if(passedTime > 5000){
      img3 = loadImage(images[10]); 
      img3.resize(42,59);
@@ -407,4 +411,3 @@ int overCust(int x, int y){
   }
   return -1;
 }
-
