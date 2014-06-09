@@ -24,6 +24,7 @@ String[] tableOrder = new String[10];
 int[] receivedOrder = new int[10];
 int[] foodCoordX = new int[20];
 int[] foodCoordY = new int[20];
+int[] tableTimer = new int[10];
 ArrayList<Integer> orders = new ArrayList<Integer>();
 ArrayList<PImage> foodim = new ArrayList<PImage>();
 ArrayList<Integer> madeOrders = new ArrayList<Integer>();
@@ -164,9 +165,45 @@ void gameSetup(){
 
    foodAppear();
    displayScore();
-  
     
-   for (int i = 0; i < numCust; i ++){
+    moveToward();
+    refreshCustomers();
+    
+    int passedTime=millis()-savedTime1;
+    if (passedTime > 10000){
+        newCustomer();
+        savedTime1=millis();
+    }
+    
+  int passedTime2 = millis() -savedTime2;    
+  if (passedTime2 > 5000 & orders.size() > 0){
+    madeOrders.add(orders.remove(0));
+    savedTime2 = millis();
+    foodim.add(loadImage(images[8+madeOrders.get(madeOrders.size()-1)]));
+  }
+  
+  if (coorX >= 435 && coorX <= 510 && coorY >= 60 && coorY <= 130 && corder == -1){
+    getOrder();
+  }
+  
+  if (corder >=0 && nearTable(coorX,coorY)>=0){
+    if (corder == customers[table[nearTable(coorX,coorY)]].giveOrder()){
+      score = score + 10;
+      receivedOrder[nearTable(coorX,coorY)]=corder;
+      tableTimer[nearTable(coorX,coorY)]=millis();
+      corder=-1;
+    }
+  }
+  checkTime();
+  placeOrders();
+  convertOrdertoString();
+  foodAppear();
+  displayOrders();
+  displayScore();
+}
+
+void refreshCustomers(){
+     for (int i = 0; i < numCust; i ++){
       if (customers[i]!=null){
         image(custim[i], custCoordX[i], custCoordY[i]);          
         if (custPlace[i]==1){
@@ -195,12 +232,10 @@ void gameSetup(){
         }
       }
     }
+}
 
-    moveToward();
-    
-    int passedTime=millis()-savedTime1;
-    if (passedTime > 10000){
-        if (numCust < 20 && (custLine1.size()!=5 || custLine2.size()!=5)){  
+void newCustomer(){
+          if (numCust < 20 && (custLine1.size()!=5 || custLine2.size()!=5)){  
           int temp = (int)(Math.random()*4);
           int index = addToArray(customers,new Customer(p));
           if (custLine2.size()<custLine1.size()){
@@ -230,32 +265,6 @@ void gameSetup(){
           custCoordY[index]=10;
           numCust ++;
         }
-        savedTime1=millis();
-    }
-    
-  int passedTime2 = millis() -savedTime2;    
-  if (passedTime2 > 5000 & orders.size() > 0){
-    madeOrders.add(orders.remove(0));
-    savedTime2 = millis();
-    foodim.add(loadImage(images[8+madeOrders.get(madeOrders.size()-1)]));
-  }
-  
-  if (coorX >= 435 && coorX <= 510 && coorY >= 60 && coorY <= 130 && corder == -1){
-    getOrder();
-  }
-  
-  if (corder >=0 && nearTable(coorX,coorY)>=0){
-    if (corder == customers[table[nearTable(coorX,coorY)]].giveOrder()){
-      score = score + 10;
-      receivedOrder[nearTable(coorX,coorY)]=corder;
-      corder=-1;
-    }
-  }
-  placeOrders();
-  convertOrdertoString();
-  foodAppear();
-  displayOrders();
-  displayScore();
 }
 
 int addToArray(Object[] a, Object addvalue){
@@ -570,6 +579,19 @@ void putOrder(int t, int ord){
    else if (ord == 2){
      food.resize(42,59);
    }
+   else if (ord == 3){
+     food.resize(45,45);
+   }
    image(food,x,y);
 }
 
+void checkTime(){
+  for (int i = 0; i < tableTimer.length; i++){
+      if (tableTimer[i]!=0){
+      if (millis()-tableTimer[i]>3000){
+        tableTimer[i]=0;
+        receivedOrder[i]=3;
+      }
+    }
+  }
+}

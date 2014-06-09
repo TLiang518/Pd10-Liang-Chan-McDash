@@ -1,5 +1,4 @@
 Java-Processing Interactions:
--Customer-Consume
 -Customer-Exit
 -Player-clearTable(?)
 
