@@ -9,7 +9,6 @@ Java-Processing Interactions:
 
 Processing Stuff:
 -Display Score
--Customers exit
 -REDO THE SPRITES
 
 -IMPLEMENT DATA STRUCTURE BETTER
