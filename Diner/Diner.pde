@@ -143,6 +143,7 @@ void gameSetup(){
     fill(207,218,65);
     textSize(100); 
     
+    
     //countdown timer
     c = climit*10*1000 - millis();
     //cmin = (c/(60*1000));
@@ -152,6 +153,7 @@ void gameSetup(){
     text(csec + ":" +cmil, 1100,50);
 
    foodAppear();
+   displayScore();
   
     
    for (int i = 0; i < numCust; i ++){
@@ -456,6 +458,18 @@ int overFood(int x, int y){
 }
 
 void displayScore(){
-  if (csec == 0){  
-}
+  if (csec == 0){
+    
+    text("Score:" + score, 1000, 1000);
+    textFont(myFont2);
+    fill(0);
+    textSize(10);
+    int passedTime=millis()-savedTime;
+    if (passedTime > 5000){
+    exit();
+    }
+  }
+      
+    
+    
 }
