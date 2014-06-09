@@ -169,7 +169,7 @@ void gameSetup(){
     refreshCustomers();
     
     int passedTime=millis()-savedTime1;
-    if (passedTime > 10000){
+    if (passedTime > 1000*(cmin+1)){
         newCustomer();
         savedTime1=millis();
     }
@@ -186,11 +186,13 @@ void gameSetup(){
   }
   if (corder >=0 && nearTable(coorX,coorY)>=0){
     if (table[nearTable(coorX,coorY)] >= 0){
-      if (corder == customers[table[nearTable(coorX,coorY)]].giveOrder()){
-        score = score + 10;
-        receivedOrder[nearTable(coorX,coorY)]=corder;
-        tableTimer[nearTable(coorX,coorY)]=millis();
-        corder=-1;
+      if (receivedOrder[nearTable(coorX,coorY)]!=3){
+        if (corder == customers[table[nearTable(coorX,coorY)]].giveOrder()){
+          score = score + 10;
+          receivedOrder[nearTable(coorX,coorY)]=corder;
+          tableTimer[nearTable(coorX,coorY)]=millis();
+          corder=-1;
+        }
       }
     }
   }
