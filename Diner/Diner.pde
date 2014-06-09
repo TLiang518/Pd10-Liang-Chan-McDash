@@ -144,7 +144,7 @@ void gameSetup(){
     textSize(100); 
     
     
-   //countdown timer
+    //countdown timer
     c = climit*10*1000 - millis();
     //cmin = (c/(60*1000));
     csec = (c/(10000)); 
@@ -278,6 +278,20 @@ void foodAppear(){
      }
   }
 }
+
+void getFood(){
+
+    if(madeOrders[i] == 1){
+      text("ICECREAM",20,900);
+    }
+    if(madeOrders[i] == 2){
+      text("BACON",50,900);
+    }
+    if(madeOrders[i] == 3){
+      text("MUFFIN", 90, 900);
+    }
+}
+    
 /*   if(Customer.giveOrder()== 1){
       if(passedTime > 5000){
      img3 = loadImage(images[8]); 
@@ -459,6 +473,7 @@ void displayScore(){
   }
 }
 
+<<<<<<< HEAD
 String orderToString(int c){
   if (c==-1){
     return "Empty";
@@ -486,4 +501,3 @@ void displayOrders(){
   textAlign(LEFT);
   text(result,25,600);
 }
-
