@@ -107,7 +107,6 @@ void keyPressed(){
         coorX = coorX + 5;
       }
       if (outOfBounds(coorX,coorY,true)){
-        //println("("+(coorX+a)+","+(coorY+b)+")");
         coorX = tempX;
         coorY = tempY;
       }
@@ -136,8 +135,8 @@ void mousePressed(){
      }
      else if (cust2 >= 0 && receivedOrder[indexOfArray(table,cust2)]==3){
        custPlace[cust2]=0;
-       table[cust2]=-1;
-       receivedOrder[cust2]=-1;
+       receivedOrder[indexOfArray(table,cust2)]=-1;
+       table[indexOfArray(table,cust2)]=-1;
        score = score + 20;
      }
      else{
@@ -146,7 +145,6 @@ void mousePressed(){
      goalX = (mouseX/5)*5;
      goalY = (mouseY/5)*5;
      if (outOfBounds(goalX,goalY,true)){
-        //println("("+(coorX+a)+","+(coorY+b)+")");
         goalX = tempX;
         goalY = tempY;
       }
@@ -187,11 +185,13 @@ void gameSetup(){
     getOrder();
   }
   if (corder >=0 && nearTable(coorX,coorY)>=0){
-    if (corder == customers[table[nearTable(coorX,coorY)]].giveOrder()){
-      score = score + 10;
-      receivedOrder[nearTable(coorX,coorY)]=corder;
-      tableTimer[nearTable(coorX,coorY)]=millis();
-      corder=-1;
+    if (table[nearTable(coorX,coorY)] >= 0){
+      if (corder == customers[table[nearTable(coorX,coorY)]].giveOrder()){
+        score = score + 10;
+        receivedOrder[nearTable(coorX,coorY)]=corder;
+        tableTimer[nearTable(coorX,coorY)]=millis();
+        corder=-1;
+      }
     }
   }
   checkTime();
