@@ -464,7 +464,7 @@ void displayScore(){
     textFont(myFont2);
     fill(0);
     textSize(10);
-    int passedTime=millis()-savedTime;
+    int passedTime=millis()-savedTime1;
     if (passedTime > 5000){
     exit();
     }
