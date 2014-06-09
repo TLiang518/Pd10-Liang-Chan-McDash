@@ -186,7 +186,6 @@ void gameSetup(){
   if (coorX >= 460 && coorX <= 510 && coorY >= 90 && coorY <= 145 && corder == -1){
     getOrder();
   }
-  
   if (corder >=0 && nearTable(coorX,coorY)>=0){
     if (corder == customers[table[nearTable(coorX,coorY)]].giveOrder()){
       score = score + 10;
@@ -512,10 +511,10 @@ void displayOrders(){
 
 int nearTable(int x, int y){
   int row = -1;
-  if (y<=180 && y>=320){
+  if (y>=180 && y<=320){
     row = 0;
   }
-  else if (y<=335 && y>=480){
+  else if (y>=335 && y<=480){
     row = 5;
   }
   else{
