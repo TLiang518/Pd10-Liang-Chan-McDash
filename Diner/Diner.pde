@@ -231,6 +231,7 @@ void gameSetup(){
     foodim.add(loadImage(images[8+madeOrders.get(madeOrders.size()-1)]));
   }
   foodAppear();
+  displayOrders();
 }
 
 int addToArray(Object[] a, Object addvalue){
@@ -456,7 +457,33 @@ void displayScore(){
     exit();
     }
   }
-      
-    
-    
 }
+
+String orderToString(int c){
+  if (c==-1){
+    return "Empty";
+  }
+  else{
+    if (customers[c].giveOrder()==0){
+      return "Ice Cream";
+    }
+    else if (customers[c].giveOrder()==1){
+      return "Bacon";
+    }
+    else{
+      return "Muffin";
+    }
+  }
+}
+
+void displayOrders(){
+  String result = "";
+  PFont f = createFont("Arial",12,true);
+  for (int i = 0; i < table.length; i ++){
+    result += "Table " + (i+1) + ": " + orderToString(table[i]) + "      ";
+  }
+  textFont(f); 
+  textAlign(LEFT);
+  text(result,25,600);
+}
+
