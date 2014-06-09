@@ -9,12 +9,13 @@ int a = 0, b = 0;
 int savedTime1,savedTime2;
 int numCust = 0;
 int c, cmin, csec, cmil;
-int climit = 10;
+int climit = 6;
 int foodOrder = 0;
 int goalX = 0, goalY = 0;
 int mousex = 480, mousey = 100;
 int served = 0, served2 = 0, served3 = 0;
 int orderNum = 0;
+int score = 0;
 int[] custCoordX = new int[20];
 int[] custCoordY = new int[20];
 int[] custPlace = new int[20];
@@ -143,12 +144,12 @@ void gameSetup(){
     textSize(100); 
     
     //countdown timer
-    c = climit*60*1000 - millis();
-    cmin = (c/(60*1000));
-    csec = (c/(100)); 
-    //cmil = (c/(60*100));
+    c = climit*10*1000 - millis();
+    //cmin = (c/(60*1000));
+    csec = (c/(10000)); 
+    cmil = (c/(1000));
     textSize(50);
-    text(cmin+ ":" + csec, 1100,50);
+    text(csec + ":" +cmil, 1100,50);
 
    foodAppear();
   
@@ -293,6 +294,24 @@ void foodAppear(){
      }
       }      
 */
+//}
+
+/*void getFood(){
+  if (mouseX <= mousex + 15 && mouseX >= mousex - 15 && mouseY <= mousey+15 && mouseY >= mousey-15){
+     served ++;
+  }
+   if (mouseX <= mousex2 + 15 && mouseX >= mousex2 - 15 && mouseY <= mousey+15 && mouseY >= mousey-15){
+
+     served2 ++;
+   }
+      if (mouseX <= mousex3 + 15 && mouseX >= mousex2 - 15 && mouseY <= mousey+15 && mouseY >= mousey-15){
+     served3 ++;
+    
+      }
+ 
+}
+*/
+
 
 void displayFood(){
     if (served != 0){
@@ -436,6 +455,7 @@ int overFood(int x, int y){
     return -1;
 }
 
-           
-      
-           
+void displayScore(){
+  if (csec == 0){  
+}
+}
