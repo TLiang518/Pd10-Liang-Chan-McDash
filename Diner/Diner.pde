@@ -144,13 +144,14 @@ void gameSetup(){
     textSize(100); 
     
     
-    //countdown timer
+   //countdown timer
     c = climit*10*1000 - millis();
     //cmin = (c/(60*1000));
     csec = (c/(10000)); 
     cmil = (c/(1000));
     textSize(50);
-    text(csec + ":" +cmil, 1100,50);
+    text(csec + ":" +cmil, 1100,525);
+   
 
    foodAppear();
    displayScore();
