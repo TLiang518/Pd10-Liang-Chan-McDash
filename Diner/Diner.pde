@@ -147,36 +147,32 @@ void gameSetup(){
    displayFood();
     
    for (int i = 0; i < numCust; i ++){
-      image(custim[i], custCoordX[i], custCoordY[i]);          
-      if (custPlace[i]==1){
-        moveToward(i,95,445-105*(custLine1.indexOf(i)));
-      }
-      else if (custPlace[i]==2){
-        moveToward(i,180,445-105*(custLine2.indexOf(i)));
-      }
-      else if (custPlace[i]>=3 && custPlace[i]<=7){
-        moveToward(i, 455 + 155*(custPlace[i]-3), 165);
-      }
-      else if (custPlace[i]==0){
-        if (custCoordX[i]==140 && custCoordY[i]==10){
-          custCoordX[i]=0;
-          custCoordY[i]=0;
-          custim[i]=null;
-          customers[i]=null;
-          numCust--;
+      if (customers[i]!=null){
+        image(custim[i], custCoordX[i], custCoordY[i]);          
+        if (custPlace[i]==1){
+          moveToward(i,95,445-105*(custLine1.indexOf(i)));
+        }
+        else if (custPlace[i]==2){
+          moveToward(i,180,445-105*(custLine2.indexOf(i)));
+        }
+        else if (custPlace[i]>=3 && custPlace[i]<=7){
+          moveToward(i, 455 + 155*(custPlace[i]-3), 165);
+        }
+        else if (custPlace[i]==0){
+          if (custCoordX[i]==140 && custCoordY[i]==10){
+            custCoordX[i]=0;
+            custCoordY[i]=0;
+            custim[i]=null;
+            customers[i]=null;
+            numCust--;
+          }
+          else {
+            moveToward(i,140,10);
+          }
         }
         else {
-          moveToward(i,140,10);
-          int passedTime=millis()-savedTime;
-                    
+          moveToward(i, 455 + 155*(custPlace[i]-8), 325);
         }
-      }
-      else {
-        int passedTime=millis()-savedTime;
-        moveToward(i, 455 + 155*(custPlace[i]-8), 325);
-        
-            
-        
       }
     }
 
@@ -404,9 +400,11 @@ int overCustTable(int x, int y){
 
    
 int overCust(int x, int y){
-  for (int i = 0; i < numCust; i ++){
-    if ((x>=custCoordX[i] && x<=custCoordX[i]+custim[i].width) && (y>=custCoordY[i] && y<=custCoordY[i]+custim[i].height) && (custLine1.indexOf(i)>=0 || custLine2.indexOf(i)>=0)){
-      return i;
+  for (int i = 0; i < 20; i ++){
+    if (custCoordX[i] > 0){
+      if ((x>=custCoordX[i] && x<=custCoordX[i]+custim[i].width) && (y>=custCoordY[i] && y<=custCoordY[i]+custim[i].height) && (custLine1.indexOf(i)>=0 || custLine2.indexOf(i)>=0)){
+        return i;
+      }
     }
   }
   return -1;
