@@ -1,7 +1,7 @@
 PFont myFont, myFont2;
 PImage bg, img, img2, img3;
 PImage[] custim = new PImage[20];
-String[] images = {"startup.jpg","restaurant","Red.png", "coorfind.png","Blue.png","Whitney.png","Falkner.png","Misty.png", "icecream.png", "bacon.png","muffin.png","plate.png"};
+String[] images = {"startup.jpg","restaurant.jpg","Red.png", "coorfind.png","Blue.png","Whitney.png","Falkner.png","Misty.png", "icecream.png", "bacon.png","muffin.png","plate.png"};
 int screen = 0;
 int a = 0, b = 0;
 int coorX = 100 , coorY = 100;
