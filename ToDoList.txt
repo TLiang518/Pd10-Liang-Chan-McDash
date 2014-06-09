@@ -8,7 +8,6 @@ Java-Processing Interactions:
 
 
 Processing Stuff:
--Display Score
 -REDO THE SPRITES
 
 -IMPLEMENT DATA STRUCTURE BETTER
