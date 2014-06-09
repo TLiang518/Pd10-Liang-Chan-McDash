@@ -16,10 +16,12 @@ int mousex = 480, mousey = 100;
 int served = 0, served2 = 0, served3 = 0;
 int orderNum = 0;
 int score = 0;
+int corder = -1;
 int[] custCoordX = new int[20];
 int[] custCoordY = new int[20];
 int[] custPlace = new int[20];
 int[] table = new int[10];
+String[] tableOrder = new String[10];
 int[] foodCoordX = new int[20];
 int[] foodCoordY = new int[20];
 ArrayList<Integer> orders = new ArrayList<Integer>();
@@ -150,7 +152,9 @@ void gameSetup(){
     csec = (c/(10000)); 
     cmil = (c/(1000));
     textSize(50);
-    text(csec + ":" +cmil, 1100,525);
+    PFont f = createFont("Arial",28, true);
+    textFont(f);
+    text(csec + ":" +cmil, 600,630);
    
 
    foodAppear();
@@ -230,8 +234,10 @@ void gameSetup(){
     savedTime2 = millis();
     foodim.add(loadImage(images[8+madeOrders.get(madeOrders.size()-1)]));
   }
+  convertOrdertoString();
   foodAppear();
   displayOrders();
+  displayScore();
 }
 
 int addToArray(Object[] a, Object addvalue){
@@ -415,43 +421,57 @@ int overFood(int x, int y){
 }
 
 void displayScore(){
-  if (csec == 0){
-    
-    text("Score:" + score, 1000, 1000);
-    textFont(myFont2);
-    fill(0);
-    textSize(10);
-    int passedTime=millis()-savedTime1;
-    if (passedTime > 5000){
-    exit();
-    }
-  }
+   PFont f = createFont("Arial",16,true);
+   textFont(f); 
+    textAlign(RIGHT);
+    text("Score: " + score,1125,630);
 }
 
-String orderToString(int c){
-  if (c==-1){
-    return "Empty";
-  }
-  else{
-    if (customers[c].giveOrder()==0){
-      return "Ice Cream";
-    }
-    else if (customers[c].giveOrder()==1){
-      return "Bacon";
+void convertOrdertoString(){
+  for (int i = 0; i < table.length; i ++){  
+    if (table[i]==-1){
+      tableOrder[i]="Empty";
     }
     else{
-      return "Muffin";
+      if (customers[table[i]].giveOrder()==0){
+        tableOrder[i]="Ice Cream";
+      }
+      else if (customers[table[i]].giveOrder()==1){
+        tableOrder[i]="Bacon";
+      }
+      else{
+        tableOrder[i]="Muffin";
+      }
     }
   }
 }
 
 void displayOrders(){
   String result = "";
+  String currentOrder = "";
   PFont f = createFont("Arial",12,true);
   for (int i = 0; i < table.length; i ++){
-    result += "Table " + (i+1) + ": " + orderToString(table[i]) + "      ";
+    result = result + "Table " + (i+1) + ": " + tableOrder[i] + "      ";
   }
   textFont(f); 
   textAlign(LEFT);
   text(result,25,600);
+  
+  if (corder == -1){
+    currentOrder = "None";
+  }
+  else if (corder == 0){
+    currentOrder = "Ice Cream";
+  }
+  else if (corder == 1){
+    currentOrder = "Bacon";
+  }
+  else if (corder == 2){
+    currentOrder = "Muffin";
+  }
+  PFont f2 = createFont("Arial",16, true);
+  textFont(f2);
+  textAlign(LEFT);
+  text("Order in Hand: " + currentOrder, 25, 630);
+  
 }

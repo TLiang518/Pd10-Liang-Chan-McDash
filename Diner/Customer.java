@@ -4,7 +4,7 @@ public class Customer{
     private int points;
     private int numPeople;//maybe we should just keep it simple and make it a set # of peeps
     private int happiness; //correlates with time
-    private static int order = (int)(Math.random()*3);
+    private int order;
     private int image;
   
 
@@ -49,7 +49,7 @@ public class Customer{
       
     }
 
-     public static int giveOrder(){     
+     public int giveOrder(){     
        return order;
     }
 }
