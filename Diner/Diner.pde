@@ -190,7 +190,7 @@ void gameSetup(){
     
     int passedTime=millis()-savedTime1;
     if (passedTime > 10000){
-        if (numCust < 10){  
+        if (numCust < 20 && (custLine1.size()!=5 || custLine2.size()!=5)){  
           int temp = (int)(Math.random()*4);
           int index = addToArray(customers,new Customer(p));
           if (custLine2.size()<custLine1.size()){
@@ -232,6 +232,13 @@ void gameSetup(){
   
   if (coorX >= 435 && coorX <= 510 && coorY >= 60 && coorY <= 130 && corder == -1){
     getOrder();
+  }
+  
+  if (corder >=0 && nearTable(coorX,coorY)>=0){
+    if (corder == customers[table[nearTable(coorX,coorY)]].giveOrder()){
+      score = score + 10;
+      corder=-1;
+    }
   }
   
   convertOrdertoString();
@@ -474,6 +481,35 @@ void displayOrders(){
   textAlign(LEFT);
   text("Order in Hand: " + currentOrder, 25, 630);  
 }
+
+int nearTable(int x, int y){
+  int row = -1;
+  if (y<=290 && y>=165){
+    row = 0;
+  }
+  else if (y<=445 && y>=325){
+    row = 5;
+  }
+  else{
+    return -1;
+  }
+  if (x>=415 && x<=495){
+    return row + 0;
+  }
+  if (x>=570 && x<=645){
+    return row + 1;
+  }
+  if (x>=715 && x<=790){
+    return row + 2;
+  }
+  if (x>=865 && x<=950){
+    return row + 3;
+  }
+  if (x>=1010 && x<=1085){
+    return row + 4;
+  }
+  return -1;
+} 
 
 void getOrder(){
   if (madeOrders.size()>0){
