@@ -149,6 +149,7 @@ void gameSetup(){
     text(cmin+ ":" + csec, 1100,50);
 
    foodAppear();
+  
     
    for (int i = 0; i < numCust; i ++){
       if (customers[i]!=null){
@@ -248,19 +249,19 @@ int addToArray(int[] a, int nullvalue, int addvalue){
 */
 void foodAppear(){
   //int passedTime = millis() -savedTime;    
-   if(orderNum == 1){
+   if(Customer.giveOrder()== 1){
    //  if(passedTime > 5000){
      img3 = loadImage(images[8]); 
      img3.resize(45,57);
      image(img3, mousex,mousey);
      }
-      else if(orderNum == 2){
+      else if(Customer.giveOrder() == 2){
    //  if(passedTime > 5000){
      img3 = loadImage(images[9]); 
      img3.resize(50,50);
      image(img3, mousex+50,mousey);
      }
-      else if(orderNum == 3){
+      else if(Customer.giveOrder()==  3){
    //  if(passedTime > 5000){
      img3 = loadImage(images[10]); 
      img3.resize(42,59);
@@ -416,9 +417,16 @@ int overCust(int x, int y){
 }
 
 int overFood(int x, int y){
-    for (int i = 0; i < 20; i ++){
-         
+    for (int i = 8; i <= 10; i ++){
+      if (foodCoordX[i] > 0){
+      if ((x>=foodCoordX[i] && x<=foodCoordX[i]+custim[i].width) && (y>=foodCoordY[i] && y<=custCoordY[i]+custim[i].height)) {
+         return i;
+      }
+    }
+    }
+    return -1;
 }
+
            
       
            
