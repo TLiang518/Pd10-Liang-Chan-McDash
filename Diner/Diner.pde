@@ -51,6 +51,14 @@ void draw(){
     }
     if (screen==1){
       gameSetup(); 
+      //countdown timer
+      c = 600000 - millis();
+      cmin = (c/60000);
+      csec = (c%60000)/1000;
+      textSize(50);
+      PFont f = createFont("Arial",28, true);
+      textFont(f);
+      text(cmin + ":" +csec, 600,630);
     }
 }
 
@@ -143,19 +151,7 @@ void gameSetup(){
     image(bg,CENTER,CENTER);
     image(img,coorX,coorY);
     fill(207,218,65);
-    textSize(100); 
-    
-    
-    //countdown timer
-    c = climit*10*1000 - millis();
-    //cmin = (c/(60*1000));
-    csec = (c/(10000)); 
-    cmil = (c/(1000));
-    textSize(50);
-    PFont f = createFont("Arial",28, true);
-    textFont(f);
-    text(csec + ":" +cmil, 600,630);
-   
+    textSize(100);    
 
    foodAppear();
    displayScore();
