@@ -1,7 +1,7 @@
 PFont myFont, myFont2;
 PImage bg, img, img2, img3;
 PImage[] custim = new PImage[20];
-String[] images = {"diner2.jpg","testpic.jpg","girl.png", "coorfind.png","peter.png","stewie.png","chris.png","lois.png", "icecream.png", "bacon.png","muffin.png"};
+String[] images = {"diner2.jpg","testpic.jpg","girl.png", "coorfind.png","peter.png","stewie.png","chris.png","lois.png", "icecream.png", "bacon.png","muffin.png","plate.png"};
 int screen = 0;
 int a = 0, b = 0;
 int coorX = 100 , coorY = 100;
@@ -50,15 +50,23 @@ void draw(){
     }
     if (screen==1){
       gameSetup(); 
-      //countdown timer
+      timer();
+    }
+}
+
+void timer(){
       c = 600000 - millis();
       cmin = (c/60000);
       csec = (c%60000)/1000;
       textSize(50);
       PFont f = createFont("Arial",28, true);
       textFont(f);
-      text(cmin + ":" +csec, 600,630);
-    }
+      if (csec > 9){
+        text(cmin + ":" +csec, 600,630);
+      }
+      else{
+        text(cmin + ":0" +csec, 600,630);
+      }
 }
 
 void intro(){
