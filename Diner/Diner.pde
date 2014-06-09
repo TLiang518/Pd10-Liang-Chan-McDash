@@ -298,21 +298,7 @@ void foodAppear(){
 */
 //}
 
-/*void getFood(){
-  if (mouseX <= mousex + 15 && mouseX >= mousex - 15 && mouseY <= mousey+15 && mouseY >= mousey-15){
-     served ++;
-  }
-   if (mouseX <= mousex2 + 15 && mouseX >= mousex2 - 15 && mouseY <= mousey+15 && mouseY >= mousey-15){
 
-     served2 ++;
-   }
-      if (mouseX <= mousex3 + 15 && mouseX >= mousex2 - 15 && mouseY <= mousey+15 && mouseY >= mousey-15){
-     served3 ++;
-    
-      }
- 
-}
-*/
 
 
 void displayFood(){
