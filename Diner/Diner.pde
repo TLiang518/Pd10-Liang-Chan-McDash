@@ -21,6 +21,8 @@ int[] custCoordX = new int[20];
 int[] custCoordY = new int[20];
 int[] custPlace = new int[20];
 int[] table = new int[20];
+int[] foodCoordX = new int[20];
+int[] foodCoordY = new int[20];
 ArrayList<Integer> custLine1 = new ArrayList<Integer>();
 ArrayList<Integer> custLine2 = new ArrayList<Integer>();
 Player p;
@@ -96,6 +98,7 @@ void keyPressed(){
 
 void mousePressed(){
   if (screen==1){
+     int food = overFood(mouseX,mouseY);
      int cust = overCust(mouseX,mouseY);
      int cust2 = overCustTable(mouseX, mouseY);
      if (cust >= 0){
@@ -124,6 +127,7 @@ void mousePressed(){
         goalY = tempY;
       }
      }
+    
   }
 }
 
@@ -144,7 +148,7 @@ void gameSetup(){
     textSize(50);
     text(cmin+ ":" + csec, 1100,50);
 
-   displayFood();
+   foodAppear();
     
    for (int i = 0; i < numCust; i ++){
       if (customers[i]!=null){
@@ -236,11 +240,12 @@ int addToArray(int[] a, int nullvalue, int addvalue){
 
 
 
-void foodOrder(){
+/*void foodOrder(){
     int orderNum = Customer.giveOrder();
     foodAppear();
     
 }
+*/
 void foodAppear(){
   //int passedTime = millis() -savedTime;    
    if(orderNum == 1){
@@ -409,3 +414,11 @@ int overCust(int x, int y){
   }
   return -1;
 }
+
+int overFood(int x, int y){
+    for (int i = 0; i < 20; i ++){
+         
+}
+           
+      
+           
