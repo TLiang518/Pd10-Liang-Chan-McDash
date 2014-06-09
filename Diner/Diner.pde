@@ -9,7 +9,7 @@ int a = 0, b = 0;
 int savedTime1,savedTime2;
 int numCust = 0;
 int c, cmin, csec, cmil;
-int climit = 6;
+int climit = 10;
 int foodOrder = 0;
 int goalX = 0, goalY = 0;
 int mousex = 480, mousey = 100;
